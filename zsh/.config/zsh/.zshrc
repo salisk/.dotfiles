@@ -79,8 +79,10 @@ source $ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zs
 
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-export KUBECONFIG=$HOME/code/k8s-gitops/provision/kubeconfig
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+  export KUBECONFIG=$HOME/code/k8s-gitops/provision/kubeconfig
+else 
+  export TERMINAL=alacritty
 fi
 
 # Force re-completion
