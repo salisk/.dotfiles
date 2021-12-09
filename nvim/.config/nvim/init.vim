@@ -114,7 +114,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
+" Color
 Plug 'flazz/vim-colorschemes'
+" Plug 'joshdick/onedark.vim'
+" Plug 'catppuccin/nvim'
 
 call plug#end()
 
