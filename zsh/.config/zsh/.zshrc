@@ -95,6 +95,7 @@ fi
 
 export TERM="xterm-256color"
 alias history='history -100'
+alias ls='ls --color=auto'
 
 #export PATH="/usr/local/opt/qt/bin:$PATH"
 #export PATH="/usr/local/opt/libiconv/bin:$PATH"
