@@ -96,6 +96,7 @@ Plug 'nvim-lua/lsp_extensions.nvim'
 
 " Neovim Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 
 Plug 'darrikonn/vim-gofmt'
@@ -103,6 +104,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'gruvbox-community/gruvbox'
 Plug 'vim-airline/vim-airline'
+
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 
 " telescope requirements...
 Plug 'nvim-lua/popup.nvim'
