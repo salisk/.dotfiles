@@ -77,6 +77,9 @@ imap ,, <Esc>A,<Esc>
 
 cmap w!! %!sudo tee > /dev/null %
 
+" Omni
+autocmd FileType go setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
 "--------------------------------------------------------------------------
 " Plugins
 "--------------------------------------------------------------------------
@@ -91,13 +94,25 @@ endif
 call plug#begin(data_dir . '/plugins')
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+Plug 'onsails/lspkind-nvim'
 Plug 'nvim-lua/lsp_extensions.nvim'
+
+Plug 'glepnir/lspsaga.nvim'
+Plug 'simrat39/symbols-outline.nvim'
 
 " Neovim Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
+
+" Snippets
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'rafamadriz/friendly-snippets'
 
 Plug 'darrikonn/vim-gofmt'
 Plug 'tpope/vim-fugitive'
@@ -121,7 +136,20 @@ Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 
+lua require("salisk")
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
+
+set completeopt=menu,menuone,noselect
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
 "--------------------------------------------------------------------------
 " Miscellaneous
 "--------------------------------------------------------------------------
 colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
+set background=dark
+highlight LineNr guifg=#5eacd3
+highlight netrwDir guifg=#5eacd3
+highlight qfFileName guifg=#aed75f
+hi TelescopeBorder guifg=#5eacd
+

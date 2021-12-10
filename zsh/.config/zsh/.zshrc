@@ -101,6 +101,9 @@ alias ls='ls --color=auto'
 
 #export PATH="/usr/local/opt/qt/bin:$PATH"
 #export PATH="/usr/local/opt/libiconv/bin:$PATH"
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 bindkey "^[[A" history-substring-search-up
 bindkey "^[OA" history-substring-search-up
