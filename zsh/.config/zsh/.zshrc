@@ -98,6 +98,9 @@ fi
 export TERM="xterm-256color"
 alias history='history -100'
 alias ls='ls --color=auto'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias vim='nvim'
 
 #export PATH="/usr/local/opt/qt/bin:$PATH"
 #export PATH="/usr/local/opt/libiconv/bin:$PATH"
@@ -109,6 +112,9 @@ bindkey "^[[A" history-substring-search-up
 bindkey "^[OA" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 bindkey "^[OB" history-substring-search-down
+
+eval "$(direnv hook zsh)"
+source ~/.nix-profile/etc/profile.d/nix.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
