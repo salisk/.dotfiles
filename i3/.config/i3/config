@@ -183,6 +183,7 @@ bindsym Mod1+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        status_command exec ~/.config/i3status/net-speed.sh
 }
 
 #######################################################################
