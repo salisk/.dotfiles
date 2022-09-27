@@ -108,6 +108,7 @@ Plug 'simrat39/symbols-outline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
@@ -138,9 +139,11 @@ Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 
-lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
+
 lua require('lsp')
 lua require("nvim-tree").setup()
+
+lua require'nvim-treesitter.configs'.setup{ highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
 
 set completeopt=menu,menuone,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
