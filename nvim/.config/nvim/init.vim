@@ -130,7 +130,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Color
 Plug 'flazz/vim-colorschemes'
@@ -147,6 +147,28 @@ lua require'nvim-treesitter.configs'.setup{ highlight = { enable = true }, incre
 
 set completeopt=menu,menuone,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
+lua << EOF
+require('telescope').setup{
+  defaults = {
+    layout_config = {
+      horizontal = {
+        preview_cutoff = 0,
+      },
+    },
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true,                 
+      override_generic_sorter = true,
+      override_file_sorter = true, 
+      case_mode = "smart_case",    
+    }
+  }
+}
+EOF
+
+lua require('telescope').load_extension('fzf')
 
 "--------------------------------------------------------------------------
 " Miscellaneous
