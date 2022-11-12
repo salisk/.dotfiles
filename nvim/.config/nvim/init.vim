@@ -23,7 +23,8 @@ set scrolloff=8
 set sidescrolloff=8
 set nojoinspaces
 set splitright
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
+set iskeyword+="-"
 set confirm
 set exrc
 set updatetime=200 " Reduce time for highlighting other references
@@ -85,7 +86,8 @@ autocmd FileType go setlocal omnifunc=v:lua.vim.lsp.omnifunc
 "--------------------------------------------------------------------------
 
 " Automatically install vim-plug
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+" let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+let data_dir = '~/.config/plugged'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -129,6 +131,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 " telescope requirements...
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'BurntSushi/ripgrep'
+Plug 'sharkdp/fd'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
@@ -143,7 +147,7 @@ call plug#end()
 lua require('lsp')
 lua require("nvim-tree").setup()
 
-lua require'nvim-treesitter.configs'.setup{ highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
+lua require'nvim-treesitter.configs'.setup{ ensure_installed = { "lua", "python", "go", "dockerfile", "yaml", "nix", "typescript" }, highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
 
 set completeopt=menu,menuone,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']

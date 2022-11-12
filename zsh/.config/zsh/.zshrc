@@ -107,6 +107,7 @@ alias vim='nvim'
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH="/usr/local/sbin:$PATH"
 
 bindkey "^[[A" history-substring-search-up
 bindkey "^[OA" history-substring-search-up
@@ -114,7 +115,10 @@ bindkey "^[[B" history-substring-search-down
 bindkey "^[OB" history-substring-search-down
 
 eval "$(direnv hook zsh)"
-source ~/.nix-profile/etc/profile.d/nix.sh
+
+if [[ "$OSTYPE" != "darwin"* ]]; then
+    source ~/.nix-profile/etc/profile.d/nix.sh
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
