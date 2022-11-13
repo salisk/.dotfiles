@@ -81,8 +81,11 @@ source $ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zs
 if [[ "$OSTYPE" == "darwin"* ]]; then
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
   export KUBECONFIG=$HOME/code/k8s-gitops/provision/kubeconfig
+  export GOROOT="$(brew --prefix golang)/libexec"
 else 
   export TERMINAL=alacritty
+  export GOROOT=/usr/local/go
+  export GOPATH=$HOME/go
 fi
 
 # Force re-completion
@@ -104,8 +107,6 @@ alias vim='nvim'
 
 #export PATH="/usr/local/opt/qt/bin:$PATH"
 #export PATH="/usr/local/opt/libiconv/bin:$PATH"
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH="/usr/local/sbin:$PATH"
 
