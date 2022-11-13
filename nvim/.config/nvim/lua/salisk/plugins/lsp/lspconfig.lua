@@ -45,7 +45,7 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 -- end
 
 -- configure typescript server
-lspconfig["typescript"].setup({
+lspconfig["tsserver"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })

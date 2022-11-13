@@ -100,8 +100,9 @@ return packer.startup(function(use)
   use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
 
   -- git
-  use('tpope/vim-fugitive')
-  use('tpope/vim-rhubarb')
+  use("lewis6991/gitsigns.nvim")
+  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
 
   if packer_bootstrap then
     require("packer").sync()
