@@ -86,6 +86,7 @@ else
   export TERMINAL=alacritty
   export GOROOT=/usr/local/go
   export GOPATH=$HOME/go
+  export PATH="/snap/bin:$PATH"
 fi
 
 # Force re-completion

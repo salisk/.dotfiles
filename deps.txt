@@ -1,2 +1,11 @@
-autojump
+autojump vim gucharmap stow zsh direnv snapd i3 arandr polybar 
+
+sudo snap install core nvim --edge --classic slack
+sudo snap install kubectl --classic
+sudo snap install goland --classic
+
+sudo npm install -g tree-sitter-cli
+
+sh <(curl -L https://nixos.org/nix/install) --daemon
+git config --global pull.rebase false
 

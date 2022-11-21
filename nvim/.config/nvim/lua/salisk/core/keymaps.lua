@@ -7,7 +7,7 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps
 ---------------------
 
--- reload/edit configuration 
+-- reload/edit configuration
 keymap.set("n", "<leader>ve", ":edit ~/.config/nvim/init.lua<cr>")
 keymap.set("n", "<leader>vr", ":source ~/.config/nvim/init.lua<cr>")
 
@@ -48,6 +48,7 @@ keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window max
 
 -- nvim-tree
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
+keymap.set("n", "<leader>e", ":NvimTreeFindFile<CR>") -- find file nvim tree
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
@@ -62,5 +63,5 @@ keymap.set("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git co
 keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
 
--- restart lsp server 
+-- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
