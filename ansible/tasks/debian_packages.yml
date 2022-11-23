@@ -1,0 +1,32 @@
+- name: Install Debian packages
+  ansible.builtin.package:
+    name:
+      - i3
+      - polybar
+      - arandr
+      - snap
+      - snapd
+      - network-manager
+    state: latest
+- name: Install Snap packages
+  community.general.snap:
+    name:
+      - core
+      - slack
+- name: Install Snap classic packages
+  community.general.snap:
+    name:
+      - kubectl
+      - goland
+    classic: true
+- name: Install Snap classic edge packages
+  community.general.snap:
+    name:
+      - nvim
+    classic: true
+    channel: latest/edge
+- name: Enable Network Manager
+  ansible.builtin.systemd:
+    name: NetworkManager
+    enabled: yes
+    state: started

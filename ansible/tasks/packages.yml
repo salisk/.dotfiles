@@ -1,0 +1,21 @@
+- name: Install packages
+  ansible.builtin.package:
+    name:
+      - htop
+      - tmux
+      - autojump
+      - vim
+      - gucharmap
+      - stow
+      - zsh
+      - direnv
+      - nodejs
+      - npm
+      - fd-find
+      - ripgrep
+      - gh
+    state: latest
+- name: Install NPM packages
+  community.general.npm:
+    name: tree-sitter-cli
+    global: true
