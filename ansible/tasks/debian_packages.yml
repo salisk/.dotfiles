@@ -12,21 +12,17 @@
   community.general.snap:
     name:
       - core
-      - slack
 - name: Install Snap classic packages
   community.general.snap:
     name:
       - kubectl
       - goland
     classic: true
-- name: Install Snap classic edge packages
-  community.general.snap:
-    name:
-      - nvim
-    classic: true
-    channel: latest/edge
 - name: Enable Network Manager
   ansible.builtin.systemd:
     name: NetworkManager
     enabled: yes
     state: started
+- name: Install neovim
+  apt:
+    deb: https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb
