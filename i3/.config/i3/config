@@ -33,6 +33,11 @@ set $down j
 set $left h
 set $right l
 
+# set monitor definitions
+set $monitor_laptop eDP-1
+set $monitor_second DP-2
+set $monitor_third DP-1-1
+
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
 
@@ -147,7 +152,24 @@ bindsym Mod1+Shift+8 move container to workspace $ws8
 bindsym Mod1+Shift+9 move container to workspace $ws9
 bindsym Mod1+Shift+0 move container to workspace $ws10
 
-# reload the configuration file
+# assign workspaces to monitors
+workspace $ws1 output $monitor_laptop
+workspace $ws2 output $monitor_second $monitor_laptop
+workspace $ws3 output $monitor_third $monitor_laptop
+workspace $ws4 output $monitor_laptop
+workspace $ws5 output $monitor_third $monitor_laptop
+workspace $ws6 output $monitor_laptop
+
+# Start default applications
+# exec --no-startup-id i3-msg 'workspace 1; sh -c "sleep 0.1 && exec /usr/bin/nvim"' 
+# exec --no-startup-id i3-msg 'workspace 2; sh -c "sleep 0.2 && exec /usr/bin/google-chrome"' 
+# exec --no-startup-id i3-msg 'workspace 3; sh -c "sleep 0.3 && exec /usr/bin/nvim"' 
+# exec --no-startup-id i3-msg 'workspace 4; sh -c "sleep 0.4 && exec /usr/bin/slack"' 
+# exec --no-startup-id i3-msg 'workspace 5; sh -c "sleep 0.5 && exec /snap/bin/goland"' 
+# exec --no-startup-id i3-msg 'workspace 6; sh -c "sleep 0.7; exec /snap/bin/spotify"' 
+# exec --no-startup-id "sh -c 'sleep 2; exec autorandr -c --force'"
+
+# # reload the configuration file
 bindsym Mod1+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Mod1+Shift+r restart
@@ -198,3 +220,19 @@ bindsym Mod1+r mode "resize"
 # Please remove the following exec line:
 #######################################################################
 exec i3-config-wizard
+
+assign [class="Google-chrome"] $ws2
+assign [class="Slack"] $ws4
+assign [class="jetbrains-goland"] $ws5
+for_window [class="Spotify"] move container to workspace $ws6
+
+
+# Start applications
+exec google-chrome
+exec slack
+exec /snap/bin/goland
+exec /snap/bin/spotify
+
+exec --no-startup-id i3-msg 'workspace 1; exec kitty; workspace 3; exec kitty'
+exec autorandr -c
+

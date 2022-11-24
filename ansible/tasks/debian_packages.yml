@@ -4,6 +4,7 @@
       - i3
       - polybar
       - arandr
+      - autorandr
       - snap
       - snapd
       - network-manager
@@ -12,6 +13,7 @@
   community.general.snap:
     name:
       - core
+      - spotify
 - name: Install Snap classic packages
   community.general.snap:
     name:
