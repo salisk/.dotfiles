@@ -4,6 +4,7 @@
       - htop
       - tmux
       - autojump
+      - neofetch
       - vim
       - gucharmap
       - stow
