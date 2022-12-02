@@ -5,9 +5,9 @@
       apt: update_cache=yes
       changed_when: False
       when: ansible_facts['distribution'] == "Debian"
-
   tasks:
     - include: tasks/packages.yml
     - include: tasks/fonts.yml
     - include: tasks/debian_packages.yml
+    - include: tasks/rules.yml
       when: ansible_facts['distribution'] == "Debian"

@@ -1,0 +1,4 @@
+- name: UHK udev rules
+  template:
+    src: 50-uhk60.rules.j2
+    dest: /etc/udev/rules.d/50-uhk60.rules
