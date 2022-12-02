@@ -9,11 +9,6 @@
       - snapd
       - network-manager
     state: latest
-- name: Install Snap packages
-  community.general.snap:
-    name:
-      - core
-      - spotify
 - name: Install Snap classic packages
   community.general.snap:
     name: goland
@@ -36,9 +31,21 @@
     state: present
     filename: kubernetes
     mode: 0600
-- name: Installing kubectl
+- name: Add Spotify GPG key
+  apt_key:
+    url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
+    state: present
+- name: Add Spotify Repository
+  apt_repository:
+    repo: deb http://repository.spotify.com stable non-free
+    state: present
+    filename: spotify
+    mode: 0600
+- name: Install custom packages
   apt:
-    name: kubectl
+    name:
+      - kubectl
+      - spotify-client
     state: present
 - name: Check UHK Agent exists
   stat:
