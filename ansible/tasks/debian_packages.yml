@@ -40,3 +40,13 @@
   apt:
     name: kubectl
     state: present
+- name: Check UHK Agent exists
+  stat:
+    path: /usr/local/bin/uhkagent
+  register: file_data
+- name: Install UHK Agent
+  get_url:
+    url: https://github.com/UltimateHackingKeyboard/agent/releases/download/v2.0.2/UHK.Agent-2.0.2-linux-x86_64.AppImage
+    mode: 0755
+    dest: /usr/local/bin/uhkagent
+  when: not file_data.stat.exists
