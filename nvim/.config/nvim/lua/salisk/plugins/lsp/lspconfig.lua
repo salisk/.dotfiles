@@ -47,12 +47,16 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 lspconfig["tsserver"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+	root_dir = lspconfig.util.root_pattern("tsconfig.json"),
+	cmd = { "typescript-language-server", "--stdio" },
 })
 
 -- configure gopls language server
 lspconfig["gopls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	root_dir = lspconfig.util.root_pattern("go.mod"),
 	settings = {
 		gopls = {
 			buildFlags = { "-tags=cluster,integration" },

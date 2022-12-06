@@ -20,8 +20,12 @@ null_ls.setup({
 		formatting.prettier, -- js/ts formatter
 		formatting.stylua, -- lua formatter
 		formatting.gofumpt,
-		formatting.goimports,
+		-- formatting.goimports.with({
+		-- 	extra_args = { "-local freya/" },
+		-- }),
+		formatting.goimports_reviser,
 		formatting.yamlfmt,
+		diagnostics.eslint,
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)

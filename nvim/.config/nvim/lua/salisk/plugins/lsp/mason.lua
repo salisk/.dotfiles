@@ -38,9 +38,12 @@ mason_null_ls.setup({
 		"prettier", -- ts/js formatter
 		"stylua", -- lua formatter
 		"gofumpt", -- go linter
-		"goimports", -- go linter
+		-- "goimports", -- go linter
 		"yamlfmt", -- yaml formatter
+		"eslint",
+		"goimports_reviser", -- go imports
 	},
 	-- auto-install configured formatters & linters (with null-ls)
-	automatic_installation = true,
+	automatic_installation = false,
+	automic_setup = true,
 })
