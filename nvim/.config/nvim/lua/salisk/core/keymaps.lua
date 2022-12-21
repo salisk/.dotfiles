@@ -21,6 +21,13 @@ keymap.set("i", ",,", "<Esc>A,<Esc>")
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
+-- copy to + register
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+-- delete selection without overwriting the register
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
 
