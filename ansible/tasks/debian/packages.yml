@@ -3,6 +3,7 @@
     name:
       - i3
       - polybar
+      - fd-find
       - arandr
       - autorandr
       - snap

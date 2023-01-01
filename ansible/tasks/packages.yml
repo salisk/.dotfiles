@@ -12,7 +12,6 @@
       - direnv
       - nodejs
       - npm
-      - fd-find
       - ripgrep
       - gh
     state: latest

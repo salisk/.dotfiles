@@ -1,13 +1,26 @@
 - hosts: localhost
-  become: true
+  vars:
+    # This variable gives us a boolean for deciding whether or not to become
+    # root. It cascades down to any subsequent tasks unless overwritten.
+    should_be_root: "{{ true if ansible_pkg_mgr != 'brew' else false }}"
   pre_tasks:
     - name: update repositories
       apt: update_cache=yes
       changed_when: False
       when: ansible_facts['distribution'] == "Debian"
   tasks:
-    - include: tasks/packages.yml
-    - include: tasks/fonts.yml
-    - include: tasks/debian_packages.yml
-    - include: tasks/rules.yml
+    - import_tasks: tasks/packages.yml
+      become: true
       when: ansible_facts['distribution'] == "Debian"
+    - include_tasks: "{{item}}"
+      with_fileglob:
+        - tasks/debian/*.yml
+      when: ansible_facts['distribution'] == "Debian"
+    - name: Install MacOSX packages
+      import_tasks: tasks/packages.yml
+      when: ansible_facts['distribution'] == "MacOSX"
+    - name: Install MacOSX dependencies
+      include_tasks: "{{item}}"
+      with_fileglob:
+        - tasks/osx/*.yml
+      when: ansible_facts['distribution'] == "MacOSX"
