@@ -1,0 +1,4 @@
+- name: Start Yabai
+  command: /usr/local/bin/brew services start yabai
+- name: Start SKHD
+  command: /usr/local/bin/brew services start skhd
