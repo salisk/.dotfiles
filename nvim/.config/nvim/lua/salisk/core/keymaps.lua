@@ -14,19 +14,23 @@ keymap.set("n", "<leader>vr", ":source ~/.config/nvim/init.lua<cr>")
 -- use jk to exit insert mode
 keymap.set("i", "jj", "<ESC>")
 
--- Easy insertion of a trailing ; or , from insert mode
+-- easy insertion of a trailing ; or , from insert mode
 keymap.set("i", ";;", "<Esc>A;<Esc>")
 keymap.set("i", ",,", "<Esc>A,<Esc>")
+
+-- keep the screen in the middle when going half the page up or down
+keymap.set("n", "<C-d>", "<C-d>zz")
+keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
 -- copy to + register
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+keymap.set("n", "<leader>Y", [["+Y]])
 
 -- delete selection without overwriting the register
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')

@@ -23,6 +23,8 @@ treesitter.setup({
 		"bash",
 		"lua",
 		"go",
+		"c",
+		"cpp",
 		"json",
 		"python",
 		"make",

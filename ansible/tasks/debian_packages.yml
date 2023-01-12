@@ -9,6 +9,7 @@
       - snapd
       - network-manager
       - postgresql-client
+      - feh
     state: latest
 - name: Install Snap classic packages
   community.general.snap:

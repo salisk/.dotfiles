@@ -87,3 +87,10 @@ lspconfig["sumneko_lua"].setup({
 		},
 	},
 })
+
+-- configure cpp
+-- lspconfig["clangd"].setup({})
+lspconfig["clangd"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
