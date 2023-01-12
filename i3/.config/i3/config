@@ -230,9 +230,8 @@ for_window [class="Spotify"] move container to workspace $ws6
 # Start applications
 exec google-chrome
 exec slack
-exec /snap/bin/goland
 exec /snap/bin/spotify
 
 exec --no-startup-id i3-msg 'workspace 1; exec kitty; workspace 3; exec kitty'
-exec autorandr -c
+exec --no-startup-id autorandr -c
 
