@@ -26,6 +26,8 @@ null_ls.setup({
 		formatting.goimports_reviser,
 		formatting.yamlfmt,
 		diagnostics.eslint,
+		-- diagnostics.cpplint,
+		-- formatting.clang_format,
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)

@@ -43,6 +43,8 @@ mason_null_ls.setup({
 		"yamlfmt", -- yaml formatter
 		"eslint",
 		"goimports_reviser", -- go imports
+		"clang-format", -- c++ format
+		"cpplint", -- c++ lint
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = false,

@@ -90,6 +90,7 @@ lspconfig["sumneko_lua"].setup({
 
 -- configure cpp
 -- lspconfig["clangd"].setup({})
+capabilities.offsetEncoding = { "utf-16" }
 lspconfig["clangd"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
