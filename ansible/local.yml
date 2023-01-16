@@ -7,12 +7,16 @@
     - name: update repositories
       apt: update_cache=yes
       changed_when: False
+      become: true
       when: ansible_facts['distribution'] == "Debian"
   tasks:
     - import_tasks: tasks/packages.yml
       become: true
       when: ansible_facts['distribution'] == "Debian"
     - include_tasks: "{{item}}"
+      args:
+        apply:
+          become: true
       with_fileglob:
         - tasks/debian/*.yml
       when: ansible_facts['distribution'] == "Debian"

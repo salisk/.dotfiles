@@ -1,0 +1,16 @@
+- name: Install helm
+  block:
+    - name: Add Helm apt repository key.
+      ansible.builtin.get_url:
+        url: "https://baltocdn.com/helm/signing.asc"
+        dest: /etc/apt/trusted.gpg.d/helm.asc
+        mode: "0644"
+        force: true
+    - name: Add Helm apt source
+      ansible.builtin.apt_repository:
+        repo: "deb https://baltocdn.com/helm/stable/debian/ all main"
+        state: present
+        update_cache: true
+    - name: Install Helm package
+      ansible.builtin.package:
+        name: helm
