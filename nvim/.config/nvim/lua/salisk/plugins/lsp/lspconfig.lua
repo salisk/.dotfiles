@@ -88,6 +88,12 @@ lspconfig["sumneko_lua"].setup({
 	},
 })
 
+-- configure python
+lspconfig["pyright"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- configure cpp
 -- lspconfig["clangd"].setup({})
 capabilities.offsetEncoding = { "utf-16" }
