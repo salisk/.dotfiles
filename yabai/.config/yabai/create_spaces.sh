@@ -1,7 +1,12 @@
 #!/bin/sh
 
-DESIRED_SPACES_PER_DISPLAY=5
+DESIRED_SPACES_PER_DISPLAY=8
 CURRENT_SPACES="$(yabai -m query --displays | jq -r '.[].spaces | @sh')"
+NUMBER_OF_DISPLAYS="$(yabai -m query --displays | jq -r '.[].index' | wc -l)"
+
+if [ "$NUMBER_OF_DISPLAYS" -gt 1 ]; then
+    DESIRED_SPACES_PER_DISPLAY=5
+fi  
 
 DELTA=0
 while read -r line
