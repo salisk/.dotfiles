@@ -118,9 +118,9 @@ bindkey "^[OB" history-substring-search-down
 
 eval "$(direnv hook zsh)"
 
-if [[ "$OSTYPE" != "darwin"* ]]; then
-    source ~/.nix-profile/etc/profile.d/nix.sh
-fi
+# if [[ "$OSTYPE" != "darwin"* ]]; then
+#     source ~/.nix-profile/etc/profile.d/nix.sh
+# fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
