@@ -59,7 +59,7 @@ lspconfig["gopls"].setup({
 	root_dir = lspconfig.util.root_pattern("go.mod"),
 	settings = {
 		gopls = {
-			buildFlags = { "-tags=cluster,integration" },
+			buildFlags = { "-tags=cluster,integration,operator" },
 		},
 	},
 	completeUnimported = true,

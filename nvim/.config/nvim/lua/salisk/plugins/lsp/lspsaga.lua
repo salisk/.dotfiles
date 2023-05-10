@@ -4,9 +4,9 @@ if not saga_status then
 	return
 end
 
-saga.setup({
-    preview = {
-        lines_above = 100,
-        lines_below = 100,
-    },
-})
+-- saga.setup({
+--     preview = {
+--         lines_above = 100,
+--         lines_below = 100,
+--     },
+-- })
