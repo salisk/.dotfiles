@@ -22,8 +22,10 @@
     enabled: yes
     state: started
 - name: Install neovim
-  apt:
-    deb: https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb
+  ansible.builtin.get_url:
+    url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+    dest: /usr/local/bin/nvim
+    mode: "0755"
 - name: Add Google official GPG key
   apt_key:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
