@@ -99,7 +99,7 @@ else
   export EDITOR='nvim'
 fi
 
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 alias history='history -100'
 alias ls='ls --color=auto'
 alias -g ...='../..'
