@@ -15,7 +15,15 @@
       - ripgrep
       - gh
     state: latest
-- name: Install NPM packages
+- name: Install tree-sitter NPM
   community.general.npm:
     name: tree-sitter-cli
+    global: true
+- name: Install typescript NPM
+  community.general.npm:
+    name: typescript
+    global: true
+- name: Install prettierd NPM
+  community.general.npm:
+    name: "@fsouza/prettierd"
     global: true
