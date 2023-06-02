@@ -5,7 +5,8 @@ return {
       gopls = {
         settings = {
           gopls = {
-            semanticTokens = false,
+            semanticTokens = true,
+            buildFlags = { "-tags=cluster,integration,operator" },
             analyses = {
               unusedparams = true,
             },

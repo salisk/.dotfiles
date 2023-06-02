@@ -1,6 +1,13 @@
 return {
   -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
+  {
+    "ellisonleao/gruvbox.nvim",
+    opts = {
+      overrides = {
+        ["@namespace"] = { link = "GruvboxAqua" },
+      },
+    },
+  },
   -- { "gruvbox-community/gruvbox" },
   -- { "luisiacc/gruvbox-baby" },
   -- { "morhetz/gruvbox" },
