@@ -14,7 +14,7 @@
       become: true
     - import_tasks: debian/packages.yml
       become: true
-    - import_tasks: common/fonts.yml
+    - import_tasks: debian/fonts.yml
       become: true
     - import_tasks: debian/helm.yml
       become: true

@@ -20,7 +20,7 @@
         name: koekeishiya/formulae
         state: present
     - name: Install fonts
-      import_tasks: common/fonts.yml
+      import_tasks: osx/fonts.yml
     - name: Install MacOSX packages
       import_tasks: osx/packages.yml
     - name: Install MacOSX cask packages
