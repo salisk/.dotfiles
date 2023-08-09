@@ -1,0 +1,4 @@
+- name: Start Yabai
+  command: yabai --start-service
+- name: Start SKHD
+  command: skhd --start-service

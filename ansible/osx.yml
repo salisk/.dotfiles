@@ -1,0 +1,35 @@
+- hosts: localhost
+  pre_tasks:
+    - name: Check Homebrew is installed
+      command: which brew
+      register: brew_installed
+    - name: Installing Homebrew
+      shell: CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      when: not brew_installed
+  tasks:
+    - name: Updating Homebrew
+      homebrew:
+        update_homebrew: true
+    - name: Upgrading Homebrew Packages
+      homebrew:
+        upgrade_all: true
+      register: result
+      until: result is successful
+    - name: Add homebrew tap
+      homebrew_tap:
+        name: koekeishiya/formulae
+        state: present
+    - name: Install fonts
+      import_tasks: common/fonts.yml
+    - name: Install MacOSX packages
+      import_tasks: osx/packages.yml
+    - name: Install MacOSX cask packages
+      import_tasks: osx/cask.yml
+    - name: Install MacOSX npm packages
+      import_tasks: osx/npm.yml
+    - name: Run Utilities
+      import_tasks: osx/utilities.yml
+    - name: Stow
+      import_tasks: common/stow.yml
+    - name: Start Services
+      import_tasks: osx/services.yml

@@ -1,0 +1,27 @@
+- name: Install Homebrew packages
+  homebrew:
+    name:
+      - htop
+      - tmux
+      - autojump
+      - neofetch
+      - vim
+      - gucharmap
+      - stow
+      - zsh
+      - direnv
+      - nodejs
+      - npm
+      - ripgrep
+      - gh
+      - fd
+      - yabai
+      - skhd
+    state: latest
+  register: result
+  until: result is successful
+- name: Install Homebrew head packages
+  homebrew:
+    name:
+      - neovim
+    state: head

@@ -1,0 +1,11 @@
+- name: Stow itself
+  command: stow -vv -t ~ -d {{playbook_dir}}/.. stow
+
+- name: Stow ZSH
+  command: stow -vv -t ~ -d {{playbook_dir}}/.. zsh
+
+- name: Stow NeoVim
+  command: stow -vv -t ~ -d {{playbook_dir}}/.. nvim
+
+- name: Stow Tmux
+  command: stow -vv -t ~ -d {{playbook_dir}}/.. tmux

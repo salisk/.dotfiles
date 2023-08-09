@@ -1,7 +1,0 @@
-- name: Install MacOS packages
-  ansible.builtin.package:
-    name:
-      - fd
-      - koekeishiya/formulae/yabai
-      - koekeishiya/formulae/skhd
-    state: latest

@@ -1,0 +1,2 @@
+- name: Replace CAPS Lock with ESC 
+  command: "hidutil property --set '{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\": 0x700000039, \"HIDKeyboardModifierMappingDst\": 0x700000029}]}'"

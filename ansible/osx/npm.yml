@@ -1,0 +1,12 @@
+# - name: Install tree-sitter NPM
+#   npm:
+#     name: tree-sitter-cli
+#     global: true
+- name: Install typescript NPM
+  npm:
+    name: typescript
+    global: true
+- name: Install prettierd NPM
+  npm:
+    name: "@fsouza/prettierd"
+    global: true

@@ -1,0 +1,7 @@
+- name: Install Cask Packages
+  homebrew_cask:
+    name:
+      - spotify
+      # - google-chrome
+      - iterm2
+    state: latest
