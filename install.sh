@@ -9,8 +9,8 @@ echo $OSTYPE
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Mac OSX
     echo "Running on Mac OSX..."
-    if ! which command > /dev/null; then
-        echo "Installing ansible"
+    if ! which ansible > /dev/null; then
+        echo "Installing ansible..."
         sudo pip3 install ansible
     fi
 	
