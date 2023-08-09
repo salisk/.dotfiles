@@ -109,7 +109,7 @@ alias vim='nvim'
 #export PATH="/usr/local/opt/qt/bin:$PATH"
 #export PATH="/usr/local/opt/libiconv/bin:$PATH"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:$PATH"
 
 bindkey "^[[A" history-substring-search-up
 bindkey "^[OA" history-substring-search-up
