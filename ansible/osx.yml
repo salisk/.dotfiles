@@ -29,7 +29,11 @@
       import_tasks: osx/npm.yml
     - name: Run Utilities
       import_tasks: osx/utilities.yml
-    - name: Stow
+    - name: Stow common
       import_tasks: common/stow.yml
+    - name: Stow Yabai
+      command: stow -vv -t ~ -d {{playbook_dir}}/.. yabai
+    - name: Stow SKHD
+      command: stow -vv -t ~ -d {{playbook_dir}}/.. skhd
     - name: Start Services
       import_tasks: osx/services.yml
