@@ -4,13 +4,14 @@
   changed_when: false
   check_mode: no
 
+- name: Copy SKHD Config
+  copy:
+    src: "{{ '~/.config/skhd/skhd_sip_enabled.conf' if 'enabled' in sip_status.stdout else '~/.config/skhd/skhd_sip_disabled.conf' }}"
+    dest: "~/.config/skhd/skhdrc"
+  changed_when: true
+
 - name: Start Yabai
   command: yabai --start-service
 
-- name: Start skhd with SIP-Enabled Config
-  command: skhd --start-service -c ~/.config/skhd/skhd_sip_enabled.conf
-  when: '"enabled" in sip_status.stdout'
-
-- name: Start skhd with SIP-Disabled Config
-  command: skhd --start-service -c ~/.config/skhd/skhd_sip_disabled.conf
-  when: '"enabled" not in sip_status.stdout'
+- name: Start SKHD
+  command: skhd --start-service
