@@ -19,6 +19,8 @@
       - skhd
       - jq
       - sketchybar
+      - go
+      - gopls
 
 - name: Check if VSCode is installed
   command: brew list --cask --versions visual-studio-code

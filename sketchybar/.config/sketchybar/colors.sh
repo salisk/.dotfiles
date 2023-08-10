@@ -9,7 +9,8 @@ export BLUE=0xff458588
 export YELLOW=0xffd79921
 export ORANGE=0xffd65d0e
 export MAGENTA=0xffb16286
-export GREY=0xff928374
+export GREY=0xffa89984
+# export GREY=0xff928374
 export SKY=0xff83a598
 export PINK=0xffd3869b
 export TRANSPARENT=0x00000000
@@ -20,9 +21,9 @@ export BAR_BORDER_COLOR=0xff665c54
 export BACKGROUND_1=0x607c6f64
 export BACKGROUND_2=0x60494d64
 
-export BAR_COLOR=0xf03c3836 #$GREY # Grey bar
-export ICON_COLOR=$WHITE # Color of all icons
-export LABEL_COLOR=$WHITE # Color of all labelsa
+export BAR_COLOR=0xf03c3836   #$GREY # Grey bar
+export ICON_COLOR=$WHITE      # Color of all icons
+export LABEL_COLOR=$WHITE     # Color of all labelsa
 export ALT_LABEL_COLOR=$WHITE # Alternative label color
 
 export SPACE_BACKGROUND=$ITEM_COLOR

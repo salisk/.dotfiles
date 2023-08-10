@@ -21,6 +21,7 @@ require("lazy").setup({
     { import = "plugins" },
     { "christoomey/vim-tmux-navigator" },
     { "nvim-treesitter/nvim-treesitter-context" },
+    { "NvChad/nvim-colorizer.lua" },
     -- disable leap
     { "ggandor/flit.nvim", enabled = false },
   },
@@ -50,4 +51,11 @@ require("lazy").setup({
       },
     },
   },
+})
+
+require 'colorizer'.setup({
+  user_default_options = {
+    RRGGBBAA = true,
+    AARRGGBB = true,
+  }
 })
