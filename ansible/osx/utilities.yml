@@ -1,8 +1,22 @@
-- name: Replace CAPS Lock with ESC 
-  command: "hidutil property --set '{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\": 0x700000039, \"HIDKeyboardModifierMappingDst\": 0x700000029}]}'"
+- name: Replace CAPS Lock with ESC
+  command: 'hidutil property --set ''{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc": 0x700000039, "HIDKeyboardModifierMappingDst": 0x700000029}]}'''
 
 - name: Set iTerm2 preferences directory
   command: defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "{{playbook_dir}}/../iterm"
 
 - name: Enable custom preferences directory in iTerm2
   command: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+- name: Install VS Code gruvbox theme
+  command: code --install-extension jdinhlife.gruvbox
+
+- name: Set VSCode Preferences
+  copy:
+    dest: "/Users/{{ lookup('env','USER') }}/Library/Application Support/Code/User/settings.json"
+    content: |
+      {
+        "explorer.confirmDragAndDrop": false,
+        "explorer.confirmDelete": false,
+        "editor.fontFamily": "JetBrainsMono Nerd Font",
+        "workbench.colorTheme": "Gruvbox Dark Medium"
+      }

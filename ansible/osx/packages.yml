@@ -19,9 +19,18 @@
       - skhd
       - jq
       - sketchybar
-    state: latest
-  register: result
-  until: result is successful
+
+- name: Check if VSCode is installed
+  command: brew list --cask --versions visual-studio-code
+  register: vscode_installed
+  failed_when: false
+  changed_when: false
+
+- name: Install VSCode using Homebrew
+  homebrew:
+    name: visual-studio-code
+  when: vscode_installed.rc != 0
+  
 - name: Install Homebrew head packages
   homebrew:
     name:
