@@ -1,4 +1,16 @@
+- name: Check SIP Status
+  shell: 'csrutil status | grep "System Integrity Protection status: "'
+  register: sip_status
+  changed_when: false
+  check_mode: no
+
 - name: Start Yabai
   command: yabai --start-service
-- name: Start SKHD
-  command: skhd --start-service
+
+- name: Start skhd with SIP-Enabled Config
+  command: skhd --start-service -c ~/.config/skhd/skhd_sip_enabled.conf
+  when: '"enabled" in sip_status.stdout'
+
+- name: Start skhd with SIP-Disabled Config
+  command: skhd --start-service -c ~/.config/skhd/skhd_sip_disabled.conf
+  when: '"enabled" not in sip_status.stdout'

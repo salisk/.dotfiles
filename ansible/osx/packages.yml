@@ -17,6 +17,7 @@
       - fd
       - yabai
       - skhd
+      - jq
     state: latest
   register: result
   until: result is successful
