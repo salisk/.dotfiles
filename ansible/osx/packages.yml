@@ -18,6 +18,7 @@
       - yabai
       - skhd
       - jq
+      - sketchybar
     state: latest
   register: result
   until: result is successful

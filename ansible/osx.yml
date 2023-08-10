@@ -17,7 +17,9 @@
       until: result is successful
     - name: Add homebrew tap
       homebrew_tap:
-        name: koekeishiya/formulae
+        name: 
+          - koekeishiya/formulae
+          - FelixKratz/formulae
         state: present
     - name: Install fonts
       import_tasks: osx/fonts.yml
@@ -31,9 +33,11 @@
       import_tasks: osx/utilities.yml
     - name: Stow common
       import_tasks: common/stow.yml
-    - name: Stow Yabai
-      command: stow -vv -t ~ -d {{playbook_dir}}/.. yabai
-    - name: Stow SKHD
-      command: stow -vv -t ~ -d {{playbook_dir}}/.. skhd
+    - name: Stow MacOSX configs
+      command: stow -vv -t ~ -d {{ playbook_dir }}/.. {{ item.path }}
+      with_items:
+        - { name: "Yabai", path: "yabai" }
+        - { name: "SKHD", path: "skhd" }
+        - { name: "Sketchybar", path: "sketchybar" }
     - name: Start Services
       import_tasks: osx/services.yml

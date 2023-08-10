@@ -15,3 +15,6 @@
 
 - name: Start SKHD
   command: skhd --start-service
+
+- name: Start Sketchybar
+  command: brew services start sketchybar
