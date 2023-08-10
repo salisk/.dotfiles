@@ -10,11 +10,35 @@
     dest: "~/.config/skhd/skhdrc"
   changed_when: true
 
+- name: Check Yabai status
+  command: launchctl list com.koekeishiya.yabai
+  register: yabai_status
+  changed_when: false
+  failed_when: false
+  ignore_errors: yes  # Ignore errors if the service is not found
+
 - name: Start Yabai
   command: yabai --start-service
+  when: yabai_status.rc != 0
+
+- name: Restart Yabai
+  command: yabai --restart-service
+  when: yabai_status.rc == 0
+
+- name: Check SKHD status
+  command: launchctl list com.koekeishiya.skhd
+  register: skhd_status
+  changed_when: false
+  failed_when: false
+  ignore_errors: yes  # Ignore errors if the service is not found
 
 - name: Start SKHD
   command: skhd --start-service
+  when: skhd_status.rc != 0
+
+- name: Restart SKHD
+  command: skhd --restart-service
+  when: skhd_status.rc == 0
 
 - name: Start Sketchybar
-  command: brew services start sketchybar
+  command: brew services restart sketchybar
