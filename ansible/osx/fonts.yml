@@ -14,3 +14,40 @@
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
     dest: "{{ lookup('env', 'HOME') }}/Library/Fonts/"
     remote_src: yes
+
+- name: Sketchybar App Font Exists
+  shell: "ls {{ lookup('env', 'HOME') }}/Library/Fonts/sketchybar-app-font.ttf"
+  register: sketchy_app_font_exists
+  ignore_errors: yes
+
+- name: Download Sketchybar App Font
+  when: sketchy_app_font_exists is failed
+  get_url:
+    url: "https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.13/sketchybar-app-font.ttf"
+    dest: "{{ lookup('env', 'HOME') }}/Library/Fonts/"
+
+- name: SF Pro Font Exists
+  shell: "ls /Library/Fonts/SF*Pro*"
+  register: sf_pro_exists
+  ignore_errors: yes
+
+- name: Download SF Pro Font Archive
+  when: sf_pro_exists is failed
+  get_url:
+    url: "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
+    dest: "/tmp/SF-Font-Pro.dmg"
+
+- name: Mount SF Pro Font DMG
+  when: sf_pro_exists is failed
+  command: hdiutil attach /tmp/SF-Font-Pro.dmg -mountpoint /Volumes/SF-Font-Pro
+  register: mount_result
+  ignore_errors: yes
+
+- name: Install SF Pro Font Package
+  when: sf_pro_exists is failed
+  shell: installer -pkg "/Volumes/SF-Font-Pro/SF Pro Fonts.pkg" -target /
+  become: true
+
+- name: Unmount SF Pro Font DMG
+  when: sf_pro_exists is failed and mount_result.rc == 0
+  command: hdiutil detach /Volumes/SF-Font-Pro
