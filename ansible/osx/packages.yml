@@ -26,7 +26,6 @@
 - name: Check if VSCode is installed
   command: brew list --cask --versions visual-studio-code
   register: vscode_installed
-  failed_when: false
   changed_when: false
 
 - name: Install VSCode using Homebrew
