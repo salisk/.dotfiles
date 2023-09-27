@@ -77,6 +77,11 @@ source $ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zs
 # #
 # plugins+=(zsh-autosuggestions zsh-completions)
 
+# Aliases
+source ~/.config/zsh/.zsh_aliases
+
+# Vinted
+source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
@@ -100,12 +105,7 @@ else
   export EDITOR='nvim'
 fi
 
-# export TERM="xterm-256color"
-alias history='history -100'
-alias ls='ls --color=auto'
-alias -g ...='../..'
-alias -g ....='../../..'
-alias vim='nvim'
+#export TERM="xterm-256color"
 
 #export PATH="/usr/local/opt/qt/bin:$PATH"
 #export PATH="/usr/local/opt/libiconv/bin:$PATH"
