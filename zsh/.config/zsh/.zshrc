@@ -117,6 +117,7 @@ bindkey "^[OA" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 bindkey "^[OB" history-substring-search-down
 
+eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 
 # if [[ "$OSTYPE" != "darwin"* ]]; then
