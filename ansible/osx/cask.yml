@@ -4,4 +4,6 @@
       - spotify
       # - google-chrome
       - iterm2
+      - obsidian
+      - raycast
     state: latest

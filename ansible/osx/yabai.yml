@@ -1,0 +1,36 @@
+- name: Get current user's username
+  command: whoami
+  register: current_user
+  changed_when: false # We don't consider this a change
+
+- name: Get Yabai binary path
+  command: which yabai
+  register: yabai_path
+  changed_when: false # We don't consider this a change
+
+- name: Get sha256 hash of Yabai binary
+  shell: shasum -a 256 {{ yabai_path.stdout }} | awk '{print $1}'
+  register: yabai_hash
+  changed_when: false # We don't consider this a change
+
+- name: Create sudoers configuration for Yabai
+  lineinfile:
+    path: /etc/sudoers.d/yabai
+    line: "{{ current_user.stdout }} ALL=(root) NOPASSWD: sha256:{{ yabai_hash.stdout }} {{ yabai_path.stdout }} --load-sa"
+    create: yes # Create the file if it doesn't exist
+  become: yes
+
+- name: Check Yabai status
+  command: launchctl list com.koekeishiya.yabai
+  register: yabai_status
+  changed_when: false
+  failed_when: false
+  ignore_errors: yes # Ignore errors if the service is not found
+
+- name: Start Yabai
+  command: yabai --start-service
+  when: yabai_status.rc != 0
+
+- name: Restart Yabai
+  command: yabai --restart-service
+  when: yabai_status.rc == 0

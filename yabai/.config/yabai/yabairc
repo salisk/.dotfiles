@@ -5,9 +5,16 @@
 launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist > /dev/null 2>&1 &
 $HOME/.config/yabai/create_spaces.sh
 
-# sudo yabai --load-sa
+SIP_STATUS="$(csrutil status | grep 'System Integrity Protection status: ')"
+if [[ "$SIP_STATUS" =~ "enabled" ]]; then
+  echo "SIP is enabled..."
+  # Run your shell commands here if SIP is enabled
+else
+  echo "SIP is disabled..."
+  yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+  sudo yabai --load-sa
+fi
 
-# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 yabai -m signal --add event=display_added action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
 yabai -m signal --add event=display_removed action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
 
@@ -48,6 +55,8 @@ yabai -m space 3 --label three
 yabai -m space 4 --label four
 yabai -m space 5 --label five
 yabai -m space 6 --label six
+yabai -m space 7 --label six
+yabai -m space 8 --label six
 yabai -m space 9 --label nine
 
 # float system preferences. Most of these just diable Yabai form resizing them.

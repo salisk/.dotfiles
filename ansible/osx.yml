@@ -17,7 +17,7 @@
       until: result is successful
     - name: Add homebrew tap
       homebrew_tap:
-        name: 
+        name:
           - koekeishiya/formulae
           - FelixKratz/formulae
         state: present
@@ -39,5 +39,7 @@
         - { name: "Yabai", path: "yabai" }
         - { name: "SKHD", path: "skhd" }
         - { name: "Sketchybar", path: "sketchybar" }
+    - name: Start Yabai
+      import_tasks: osx/yabai.yml
     - name: Start Services
       import_tasks: osx/services.yml
