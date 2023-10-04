@@ -1,0 +1,5 @@
+- name: Copy custom .keylayout file
+  copy:
+    src: "{{ playbook_dir }}/US-LT.keylayout"
+    dest: ~/Library/Keyboard Layouts/
+  become: yes
