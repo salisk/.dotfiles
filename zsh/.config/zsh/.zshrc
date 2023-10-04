@@ -112,6 +112,10 @@ fi
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH="/usr/local/sbin:$PATH"
 
+export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+
 bindkey "^[[A" history-substring-search-up
 bindkey "^[OA" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
