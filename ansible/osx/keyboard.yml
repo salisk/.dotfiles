@@ -3,3 +3,16 @@
     src: "{{ playbook_dir }}/US-LT.keylayout"
     dest: ~/Library/Keyboard Layouts/
   become: yes
+
+- name: Disable non-custom keyboard layouts
+  command: defaults write ~/Library/Preferences/com.apple.HIToolbox.plist AppleInputSourceHistory -array-add '{ "InputSourceKind" = "Keyboard Input Source"; "KeyboardLayout ID" = 16383; "KeyboardLayout Name" = "Lithuanian (US)"; }'
+  become: yes
+  ignore_errors: yes # Ignore errors if the non-custom layouts are not present
+
+- name: Set custom .keylayout as the default
+  command: defaults write ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources -array-add '{ "InputSourceKind" = "Keyboard Input Source"; "KeyboardLayout ID" = 16383; "KeyboardLayout Name" = "Lithuanian (US)"; }'
+  become: yes
+
+- name: Restart Input Source Management Service
+  command: sudo killall -HUP cfprefsd
+  become: yes
