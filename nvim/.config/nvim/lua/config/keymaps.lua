@@ -27,3 +27,21 @@ vim.keymap.set("n", "<leader>wq", ":close<CR>") -- close current split window
 
 -- restart lsp server
 vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
+
+-- Check if the operating system is macOS (Darwin)
+if vim.loop.os_uname().sysname == "Darwin" then
+  function TmuxYabaiOrSplitSwitch(wincmd, direction)
+    local previous_winnr = vim.fn.winnr()
+    vim.cmd("silent! wincmd " .. wincmd)
+    local current_winnr = vim.fn.winnr()
+
+    if previous_winnr == current_winnr then
+      vim.fn.system("~/.config/yabai/tmux-yabai.sh " .. direction)
+    end
+  end
+
+  vim.keymap.set("n", "<C-h>", [[:lua TmuxYabaiOrSplitSwitch('h', 'west')<CR>]], { silent = true })
+  vim.keymap.set("n", "<C-j>", [[:lua TmuxYabaiOrSplitSwitch('j', 'south')<CR>]], { silent = true })
+  vim.keymap.set("n", "<C-k>", [[:lua TmuxYabaiOrSplitSwitch('k', 'north')<CR>]], { silent = true })
+  vim.keymap.set("n", "<C-l>", [[:lua TmuxYabaiOrSplitSwitch('l', 'east')<CR>]], { silent = true })
+end
