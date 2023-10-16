@@ -81,7 +81,7 @@ source $ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zs
 source ~/.config/zsh/.zsh_aliases
 
 # Vinted
-source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh"
+source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh" || true
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
@@ -121,7 +121,7 @@ bindkey "^[OA" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 bindkey "^[OB" history-substring-search-down
 
-eval "$(rbenv init -)"
+eval "$(rbenv init -)" || true
 eval "$(direnv hook zsh)"
 
 # if [[ "$OSTYPE" != "darwin"* ]]; then
