@@ -46,7 +46,9 @@ luac.out
 
 
 */plugin/packer_compiled.lua
+zsh/config/zsh/.zsh_sessions/
 */lazy-lock.json
 .zcompcache/
 
 skhd/.config/skhd/skhdrc
+skethchybar/.config/skethchybar/height/get_menu_bar_height
