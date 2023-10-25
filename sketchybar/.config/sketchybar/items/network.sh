@@ -3,7 +3,7 @@
 source "$CONFIG_DIR/icons.sh"
 
 sketchybar -m --add item network.up right \
-	--set network.up label.font="$FONT:Bold:10" \
+	--set network.up label.font="$NERD_FONT:Bold:10" \
 	icon.font="$NERD_FONT:Bold:16.0" \
 	icon="$NETWORK_UP" \
 	icon.highlight_color=$BLUE \
@@ -13,7 +13,7 @@ sketchybar -m --add item network.up right \
 	script="$PLUGIN_DIR/network.sh" \
 	\
 	--add item network.down right \
-	--set network.down label.font="$FONT:Bold:10" \
+	--set network.down label.font="$NERD_FONT:Bold:10" \
 	icon.font="$NERD_FONT:Bold:16.0" \
 	icon="$NETWORK_DOWN" \
 	icon.highlight_color=$YELLOW \
