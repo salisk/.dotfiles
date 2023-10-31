@@ -28,6 +28,9 @@ vim.keymap.set("n", "<leader>wq", ":close<CR>") -- close current split window
 -- restart lsp server
 vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
+-- dadbod UI
+vim.keymap.set("n", "<leader>cq", ":DBUIToggle<CR>")
+
 -- Check if the operating system is macOS (Darwin)
 if vim.loop.os_uname().sysname == "Darwin" then
   function TmuxYabaiOrSplitSwitch(wincmd, direction)
