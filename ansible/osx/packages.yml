@@ -19,6 +19,7 @@
       - skhd
       - jq
       - sketchybar
+      - borders
       - go
       - gopls
       - ifstat
@@ -32,7 +33,7 @@
   homebrew:
     name: visual-studio-code
   when: vscode_installed.rc != 0
-  
+
 - name: Install Homebrew head packages
   homebrew:
     name:
