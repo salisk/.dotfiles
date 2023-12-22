@@ -62,7 +62,7 @@ source $ZSH_PLUGINS/git/git.plugin.zsh
 #source $ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh  # doesn't work with history substring search
 source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh
+# source $ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # plugins=()
 # plugins+=(zsh-syntax-highlighting)
@@ -116,13 +116,14 @@ export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
 
-bindkey "^[[A" history-substring-search-up
-bindkey "^[OA" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
-bindkey "^[OB" history-substring-search-down
+# bindkey "^[[A" history-substring-search-up
+# bindkey "^[OA" history-substring-search-up
+# bindkey "^[[B" history-substring-search-down
+# bindkey "^[OB" history-substring-search-down
 
 eval "$(rbenv init -)" || true
 eval "$(direnv hook zsh)"
+eval "$(atuin init zsh)"
 
 # if [[ "$OSTYPE" != "darwin"* ]]; then
 #     source ~/.nix-profile/etc/profile.d/nix.sh
