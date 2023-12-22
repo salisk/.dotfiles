@@ -1,4 +1,6 @@
-- hosts: localhost
+- name: Setup MacOSX Environment
+  hosts: localhost
+  gather_facts: yes
   pre_tasks:
     - name: Check Homebrew is installed
       command: which brew

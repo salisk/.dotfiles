@@ -19,10 +19,15 @@
       - skhd
       - jq
       - sketchybar
-      - borders
       - go
       - gopls
       - ifstat
+
+- name: Install JankyBorders
+  homebrew:
+    name:
+      - borders
+  when: ansible_distribution_major_version|int > 13
 
 - name: Check if VSCode is installed
   command: brew list --cask --versions visual-studio-code
