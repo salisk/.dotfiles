@@ -81,7 +81,7 @@ source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/.zsh_aliases
 
 # Vinted
-source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh" || true
+[ -f "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh" ] && source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
@@ -121,7 +121,7 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
 # bindkey "^[[B" history-substring-search-down
 # bindkey "^[OB" history-substring-search-down
 
-eval "$(rbenv init -)" || true
+command -v rbenv &> /dev/null && eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 eval "$(atuin init zsh)"
 

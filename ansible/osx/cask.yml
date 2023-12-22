@@ -7,3 +7,4 @@
       - obsidian
       - raycast
     state: latest
+  ignore_errors: true
