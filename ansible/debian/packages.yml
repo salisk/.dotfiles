@@ -12,6 +12,7 @@
       - postgresql-client
       - feh
       - jq
+      - fzf
     state: latest
 - name: Install Snap classic packages
   community.general.snap:

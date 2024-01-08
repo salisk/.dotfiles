@@ -23,6 +23,7 @@
       - gopls
       - ifstat
       - atuin
+      - fzf
 
 - name: Install JankyBorders
   homebrew:
