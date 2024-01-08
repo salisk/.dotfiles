@@ -36,6 +36,7 @@ require("lazy").setup({
     { "christoomey/vim-tmux-navigator" },
     { "nvim-treesitter/nvim-treesitter-context" },
     { "NvChad/nvim-colorizer.lua" },
+    { "nvim-lua/plenary.nvim" },
     -- disable leap
     { "ggandor/flit.nvim", enabled = false },
   },

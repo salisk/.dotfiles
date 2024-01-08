@@ -24,6 +24,7 @@
       - ifstat
       - atuin
       - fzf
+      - pngpaste
 
 - name: Install JankyBorders
   homebrew:
