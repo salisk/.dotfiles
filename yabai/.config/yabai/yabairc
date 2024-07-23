@@ -72,6 +72,8 @@ yabai -m rule --add app="^Flux$" manage=off
 yabai -m rule --add app="^console$" manage=off
 yabai -m rule --add app="^Logi Options$" manage=off
 yabai -m rule --add app="^Private Internet Access$" manage=off
+yabai -m rule --add app='^Arc$' title='^Space.*$' manage=off
+# yabai -m rule --add app="^Arc$" subrole='AXSystemDialog' manage=off mouse_follows_focus=off
 
 yabai -m config layout bsp
 
