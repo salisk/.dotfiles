@@ -4,3 +4,7 @@
 
 local opt = vim.opt
 opt.iskeyword:append("-") -- consider string-string as whole word
+
+-- Ruby overrides
+vim.g.lazyvim_ruby_lsp = "solargraph"
+vim.g.lazyvim_ruby_formatter = "rubocop"
