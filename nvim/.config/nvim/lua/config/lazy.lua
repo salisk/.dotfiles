@@ -37,6 +37,7 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter-context" },
     { "NvChad/nvim-colorizer.lua" },
     { "nvim-lua/plenary.nvim" },
+    { "tpope/vim-rails" },
     -- disable leap
     { "ggandor/flit.nvim", enabled = false },
   },
