@@ -45,6 +45,7 @@
         - { name: "Sketchybar", path: "sketchybar" }
         - { name: "Borders", path: "borders" }
         - { name: "Atuin", path: "atuin" }
+        - { name: "SketchyVim", path: "svim" }
     - name: Start Yabai
       import_tasks: osx/yabai.yml
     - name: Start Services

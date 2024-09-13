@@ -25,6 +25,7 @@
       - atuin
       - fzf
       - pngpaste
+      - svim
 
 - name: Install JankyBorders
   homebrew:
