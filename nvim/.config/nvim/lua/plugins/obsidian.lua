@@ -1,4 +1,5 @@
-local obsidian_path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ObsidianNotes"
+local obsidian_relative_path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ObsidianNotes"
+
 return {
   "epwalsh/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
@@ -27,21 +28,22 @@ return {
       end,
       desc = "Create new note",
     },
-    { "<leader>oo", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian notes" },
-    { "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch" },
+    { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian notes" },
+    { "<leader>od", "<cmd>ObsidianToday<cr>", desc = "Open daily note" },
+    { "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch" },
     { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Show location list of backlinks" },
     { "<leader>of", "<cmd>ObsidianFollowLink<cr>", desc = "Follow link under cursor" },
     { "<leader>ot", "<cmd>ObsidianTemplate Core<cr>", desc = "Apply Core Template" },
     { "<leader>og", "<cmd>ObsidianGitSync<cr>", desc = "Sync changes to git" },
   },
   opts = {
-    attachments = { img_folder = obsidian_path .. "/_resources" },
+    attachments = { img_folder = obsidian_relative_path .. "/_resources" },
     completion = { nvim_cmp = true },
-    templates = { folder = obsidian_path .. "/Templates", date_format = "%y%m%d", time_format = "%H%M" },
+    templates = { folder = obsidian_relative_path .. "/Templates", date_format = "%y%m%d", time_format = "%H%M" },
     workspaces = {
       {
         name = "personal",
-        path = obsidian_path,
+        path = obsidian_relative_path,
         overrides = {
           daily_notes = {
             folder = "Daily",
@@ -60,12 +62,48 @@ return {
         return os.date("%Y%m%d%H%M%S")
       end
     end,
+
+    -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
+    -- URL it will be ignored but you can customize this behavior here.
+    ---@param url string
+    follow_url_func = function(url)
+      -- Open the URL in the default web browser.
+      vim.fn.jobstart({ "open", url }) -- Mac OS
+      -- vim.fn.jobstart({"xdg-open", url})  -- linux
+      -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
+      -- vim.ui.open(url) -- need Neovim 0.10.0+
+    end,
+
+    -- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
+    -- file it will be ignored but you can customize this behavior here.
+    ---@param img string
+    follow_img_func = function(img)
+      vim.fn.jobstart({ "qlmanage", "-p", img }) -- Mac OS quick look preview
+      -- vim.fn.jobstart({"xdg-open", url})  -- linux
+      -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
+    end,
   },
   -- sync changes to git
   config = function(_, opts)
     require("obsidian").setup(opts)
     local job = require("plenary.job")
     local update_interval_mins = 2
+
+    -- Function to expand the tilde (~) to the full path
+    local function expand_home(path_str)
+      if path_str:sub(1, 1) == "~" then
+        local home = os.getenv("HOME")
+        if home then
+          return path_str:gsub("^~", home)
+        else
+          -- Handle the case where HOME is not set (should be rare)
+          error("HOME environment variable is not set")
+        end
+      end
+      return path_str
+    end
+
+    local obsidian_path = expand_home(obsidian_relative_path)
 
     -- check for any changes in the vault & pull them in
     local function pull_changes()
