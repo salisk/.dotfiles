@@ -87,7 +87,7 @@ return {
   config = function(_, opts)
     require("obsidian").setup(opts)
     local job = require("plenary.job")
-    local update_interval_mins = 2
+    local update_interval_mins = 5
 
     -- Function to expand the tilde (~) to the full path
     local function expand_home(path_str)
@@ -111,6 +111,16 @@ return {
         :new({
           command = "git",
           args = { "pull" },
+          cwd = obsidian_path,
+        })
+        :start()
+    end
+
+    local function remove_lock()
+      job
+        :new({
+          command = "rm",
+          args = { ".git/index.lock" },
           cwd = obsidian_path,
         })
         :start()
@@ -162,6 +172,7 @@ return {
     end
 
     local function sync_changes()
+      remove_lock()
       stage_changes()
       pull_changes()
     end
