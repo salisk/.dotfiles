@@ -184,7 +184,7 @@ return {
       end, update_interval_mins * 60 * 1000)
     end
 
-    schedule_update()
+    -- schedule_update()
 
     vim.api.nvim_create_user_command("ObsidianGitSync", function()
       sync_changes()
