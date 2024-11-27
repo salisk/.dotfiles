@@ -148,7 +148,7 @@ return {
             push_changes()
           end,
           on_stderr = function(_, data)
-            vim.notify("Error committing changes: " .. data, 2, { title = "Obsidian.nvim" })
+            -- vim.notify("Error committing changes: " .. data, 2, { title = "Obsidian.nvim" })
           end,
         })
         :start()
@@ -165,7 +165,7 @@ return {
             commit_changes()
           end,
           on_stderr = function(_, data)
-            vim.notify("Error staging changes: " .. data, 2, { title = "Obsidian.nvim" })
+            -- vim.notify("Error staging changes: " .. data, 2, { title = "Obsidian.nvim" })
           end,
         })
         :start()
