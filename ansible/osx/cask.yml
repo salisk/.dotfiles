@@ -3,7 +3,7 @@
     name:
       - spotify
       # - google-chrome
-      - iterm2
+      # - iterm2
       - obsidian
       - raycast
     state: latest

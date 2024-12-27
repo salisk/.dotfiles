@@ -26,6 +26,8 @@
       - fzf
       - pngpaste
       - svim
+      - ghostty
+  ignore_errors: yes
 
 - name: Install JankyBorders
   homebrew:
@@ -33,15 +35,15 @@
       - borders
   when: ansible_distribution_major_version|int > 13
 
-- name: Check if VSCode is installed
-  command: brew list --cask --versions visual-studio-code
-  register: vscode_installed
-  changed_when: false
+# - name: Check if VSCode is installed
+#   command: brew list --cask --versions visual-studio-code
+#   register: vscode_installed
+#   changed_when: false
 
-- name: Install VSCode using Homebrew
-  homebrew:
-    name: visual-studio-code
-  when: vscode_installed.rc != 0
+# - name: Install VSCode using Homebrew
+#   homebrew:
+#     name: visual-studio-code
+#   when: vscode_installed.rc != 0
 
 - name: Install Homebrew head packages
   homebrew:

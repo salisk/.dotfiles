@@ -33,8 +33,8 @@
       import_tasks: osx/cask.yml
     - name: Install MacOSX npm packages
       import_tasks: osx/npm.yml
-    - name: Run Utilities
-      import_tasks: osx/utilities.yml
+    # - name: Run Utilities
+    #   import_tasks: osx/utilities.yml
     - name: Stow common
       import_tasks: common/stow.yml
     - name: Stow MacOSX configs

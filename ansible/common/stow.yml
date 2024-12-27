@@ -9,3 +9,6 @@
 
 - name: Stow Tmux
   command: stow -vv -t ~ -d {{playbook_dir}}/.. tmux
+
+- name: Stow Ghostty
+  command: stow -vv -t ~ -d {{playbook_dir}}/.. ghostty
