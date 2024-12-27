@@ -38,7 +38,7 @@ return {
   },
   opts = {
     attachments = { img_folder = obsidian_relative_path .. "/_resources" },
-    completion = { nvim_cmp = true },
+    completion = { nvim_cmp = false },
     templates = { folder = obsidian_relative_path .. "/Templates", date_format = "%y%m%d", time_format = "%H%M" },
     workspaces = {
       {
