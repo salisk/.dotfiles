@@ -1,2 +1,6 @@
 sync_address = "https://sh.salisk.com"
 enter_accept = false
+keymap_mode = "vim-insert"
+
+[sync]
+records = true
