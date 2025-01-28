@@ -1,3 +1,4 @@
 # theme = gruvbox-material
 theme = "GruvboxDark"
 macos-option-as-alt = true
+font-feature = -calt
