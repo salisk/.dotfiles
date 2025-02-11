@@ -4,6 +4,7 @@ return {
     "ellisonleao/gruvbox.nvim",
     opts = {
       overrides = {
+        SnacksPickerDir = { link = "Comment" },
         ["@namespace"] = { link = "GruvboxAqua" },
       },
     },
