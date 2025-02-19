@@ -22,6 +22,7 @@
         name:
           - koekeishiya/formulae
           - FelixKratz/formulae
+          - nikitabobko/formulae
         state: present
     - name: Install fonts
       import_tasks: osx/fonts.yml
@@ -40,12 +41,13 @@
     - name: Stow MacOSX configs
       command: stow -vv -t ~ -d {{ playbook_dir }}/.. {{ item.path }}
       with_items:
-        - { name: "Yabai", path: "yabai" }
-        - { name: "SKHD", path: "skhd" }
+        # - { name: "Yabai", path: "yabai" }
+        # - { name: "SKHD", path: "skhd" }
         - { name: "Sketchybar", path: "sketchybar" }
         - { name: "Borders", path: "borders" }
         - { name: "Atuin", path: "atuin" }
         - { name: "SketchyVim", path: "svim" }
+        - { name: "Aerospace", path: "aerospace" }
     - name: Start Yabai
       import_tasks: osx/yabai.yml
     - name: Start Services

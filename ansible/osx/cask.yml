@@ -6,5 +6,6 @@
       # - iterm2
       - obsidian
       - raycast
+      - aerospace
     state: latest
   ignore_errors: true
