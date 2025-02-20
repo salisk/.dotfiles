@@ -1,5 +1,3 @@
- Reference: https://github.com/i3/i3/blob/next/etc/config
-
 # i3 doesn't have "normalizations" feature that why we disable them here.
 # But the feature is very helpful.
 # Normalizations eliminate all sorts of weird tree configurations that don't make sense.
@@ -22,7 +20,7 @@ after-startup-command = [
 
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',.
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
 [mode.main.binding]
