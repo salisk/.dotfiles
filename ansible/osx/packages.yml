@@ -19,6 +19,7 @@
       - skhd
       - jq
       - sketchybar
+      - borders
       - go
       - gopls
       - ifstat
@@ -27,13 +28,10 @@
       - pngpaste
       - svim
       - ghostty
+      - lua
+      - switchaudio-osx
+      - nowplaying-cli
   ignore_errors: yes
-
-- name: Install JankyBorders
-  homebrew:
-    name:
-      - borders
-  when: ansible_distribution_major_version|int > 13
 
 # - name: Check if VSCode is installed
 #   command: brew list --cask --versions visual-studio-code
@@ -50,3 +48,18 @@
     name:
       - neovim
     state: head
+
+- name: Clone SbarLua repository
+  git:
+    repo: https://github.com/FelixKratz/SbarLua.git
+    dest: /tmp/SbarLua
+
+- name: Install SbarLua
+  command: make install
+  args:
+    chdir: /tmp/SbarLua
+
+- name: Remove SbarLua temporary directory
+  file:
+    path: /tmp/SbarLua
+    state: absent
