@@ -10,6 +10,11 @@ local icons = {
 		clipboard = "􀉄",
 		clipboard_list = "􁕜",
 		ram = "􀫦",
+		memory = "􀫦",
+		hdd = "􀥾",
+		brew = "􀐚",
+		mail = "􀍕",
+		messages = "􀌤",
 
 		weather = {
 			sunny = "􀆭",
@@ -70,6 +75,11 @@ local icons = {
 		clipboard = "􀉄",
 		clipboard_list = "􁕜",
 		ram = "􀫦",
+		memory = "􀫦",
+		hdd = "􀥾",
+		brew = "􀐚",
+		mail = "􀍕",
+		messages = "􀌤",
 
 		weather = {
 			sunny = "􀆭",
