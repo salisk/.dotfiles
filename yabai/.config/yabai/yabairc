@@ -2,7 +2,7 @@
 #YABAI STUFF
 
 # Unload the macOS WindowManager process
-launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist >/dev/null 2>&1 &
+# launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist >/dev/null 2>&1 &
 $HOME/.config/yabai/create_spaces.sh
 
 SIP_STATUS="$(csrutil status | grep 'System Integrity Protection status: ')"

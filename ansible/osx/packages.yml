@@ -1,6 +1,7 @@
 - name: Install Homebrew packages
   homebrew:
     name:
+      - ansible
       - htop
       - tmux
       - autojump
@@ -27,10 +28,18 @@
       - fzf
       - pngpaste
       - svim
-      - ghostty
       - lua
+      - luarocks
       - switchaudio-osx
       - nowplaying-cli
+    state: latest
+  ignore_errors: yes
+
+- name: Install Ghostty
+  homebrew:
+    name:
+      - ghostty
+    state: present
   ignore_errors: yes
 
 # - name: Check if VSCode is installed
@@ -63,3 +72,13 @@
   file:
     path: /tmp/SbarLua
     state: absent
+
+- name: Install Lunajson using Luarocks
+  command: luarocks install lunajson
+  become: yes
+
+- name: Install yfinance using pip
+  pip:
+    executable: pip3
+    name: yfinance
+    extra_args: --break-system-packages

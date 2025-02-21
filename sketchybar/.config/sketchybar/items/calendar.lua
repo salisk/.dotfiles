@@ -4,46 +4,59 @@ local colors = require("colors")
 -- Padding item required because of bracket
 sbar.add("item", { position = "right", width = settings.group_paddings })
 
-local cal = sbar.add("item", {
-  icon = {
-    color = colors.white,
-    padding_left = 8,
-    font = {
-      style = settings.font.style_map["Black"],
-      size = 12.0,
-    },
-  },
-  label = {
-    color = colors.white,
-    padding_right = 8,
-    width = 49,
-    align = "right",
-    font = { family = settings.font.numbers },
-  },
-  position = "right",
-  update_freq = 30,
-  padding_left = 1,
-  padding_right = 1,
-  background = {
-    color = colors.bg2,
-    border_color = colors.black,
-    border_width = 1
-  },
-  click_script = "open -a 'Calendar'"
+local cal_up = sbar.add("item", {
+	position = "right",
+	padding_left = -5,
+	width = 0,
+	label = {
+		color = colors.yellow,
+		font = {
+			family = settings.font.numbers,
+			size = 11.0,
+		},
+	},
+	y_offset = 6,
+})
+
+local cal_down = sbar.add("item", {
+	position = "right",
+	padding_left = -5,
+	label = {
+		color = colors.white,
+		font = {
+			family = settings.font.numbers,
+			size = 11.0,
+		},
+	},
+	y_offset = -6,
 })
 
 -- Double border for calendar using a single item bracket
-sbar.add("bracket", { cal.name }, {
-  background = {
-    color = colors.transparent,
-    height = 30,
-    border_color = colors.grey,
-  }
+local cal_bracket = sbar.add("bracket", { cal_up.name, cal_down.name }, {
+	background = {
+		color = colors.bg1,
+		height = 30,
+		-- border_color = colors.,
+	},
+	update_freq = 30,
 })
 
 -- Padding item required because of bracket
-sbar.add("item", { position = "right", width = settings.group_paddings })
+local spacing = sbar.add("item", { position = "right", width = 26 })
 
-cal:subscribe({ "forced", "routine", "system_woke" }, function(env)
-  cal:set({ icon = os.date("%a. %d %b."), label = os.date("%H:%M") })
+cal_bracket:subscribe({ "forced", "routine", "system_woke" }, function(env)
+	local up_value = string.format("%s %d", os.date("%a %b"), tonumber(os.date("%d")))
+	if #up_value < 10 then
+		spacing:set({ width = 18 })
+	end
+	local down_value = string.format("%d:%s", tonumber(os.date("%I")), os.date("%M %p"))
+	cal_up:set({ label = { string = up_value } })
+	cal_down:set({ label = { string = down_value } })
 end)
+
+local function click_event(env)
+	sbar.exec(settings.calendar.click_script)
+end
+
+cal_up:subscribe("mouse.clicked", click_event)
+cal_down:subscribe("mouse.clicked", click_event)

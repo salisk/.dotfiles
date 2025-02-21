@@ -19,16 +19,12 @@
           - FelixKratz/formulae
           - nikitabobko/tap
         state: present
-    - name: Upgrading Homebrew Packages
-      homebrew:
-        upgrade_all: true
-      ignore_errors: yes
+    - name: Install MacOSX packages
+      import_tasks: osx/packages.yml
     - name: Install fonts
       import_tasks: osx/fonts.yml
     - name: Install keyboard
       import_tasks: osx/keyboard.yml
-    - name: Install MacOSX packages
-      import_tasks: osx/packages.yml
     - name: Install MacOSX cask packages
       import_tasks: osx/cask.yml
     - name: Install MacOSX npm packages
@@ -47,7 +43,7 @@
         - { name: "Atuin", path: "atuin" }
         - { name: "SketchyVim", path: "svim" }
         - { name: "Aerospace", path: "aerospace" }
-    - name: Start Yabai
-      import_tasks: osx/yabai.yml
+    # - name: Start Yabai
+    #   import_tasks: osx/yabai.yml
     - name: Start Services
       import_tasks: osx/services.yml
