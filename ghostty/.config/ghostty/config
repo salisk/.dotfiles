@@ -2,3 +2,4 @@
 theme = "GruvboxDark"
 macos-option-as-alt = true
 font-feature = -calt
+confirm-close-surface = false
