@@ -94,6 +94,7 @@ return {
 	["Firefox Nightly"] = ":firefox_developer_edition:",
 	["Folx"] = ":folx:",
 	["Fork"] = ":fork:",
+	["FortiClient"] = ":vpn:",
 	["FreeTube"] = ":freetube:",
 	["Fusion"] = ":fusion:",
 	["System Preferences"] = ":gear:",

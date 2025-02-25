@@ -80,9 +80,6 @@ source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Aliases
 source ~/.config/zsh/.zsh_aliases
 
-# Vinted
-[ -f "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh" ] && source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh"
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -124,6 +121,9 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
 command -v rbenv &> /dev/null && eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 eval "$(atuin init zsh)"
+
+# Vinted
+[ -f "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh" ] && source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh"
 
 # if [[ "$OSTYPE" != "darwin"* ]]; then
 #     source ~/.nix-profile/etc/profile.d/nix.sh
