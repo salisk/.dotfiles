@@ -43,11 +43,12 @@ yabai -m config window_border on \
 	mouse_action2 resize \
 	mouse_drop_action swap \
 	\
-	top_padding 40 \
 	bottom_padding 10 \
 	left_padding 10 \
 	right_padding 10 \
-	window_gap 8
+	window_gap 8 \
+	external_bar all:45:0
+# top_padding 20 \
 
 # My custom space names for my 3 monitor setup. These names are used in some of my scripts.
 yabai -m space 1 --label one
