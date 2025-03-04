@@ -16,7 +16,7 @@ local slack = sbar.add("item", "widgets.slack", {
 	popup = { align = "center" },
 })
 
-slack:subscribe({ "routine", "workspace_change" }, function()
+slack:subscribe({ "routine", "space_change" }, function()
 	sbar.exec('lsappinfo info -only StatusLabel "Slack"', function(status_info)
 		local icon = "󰒱"
 		local label = ""

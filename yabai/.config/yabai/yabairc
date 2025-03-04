@@ -3,7 +3,6 @@
 
 # Unload the macOS WindowManager process
 # launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist >/dev/null 2>&1 &
-$HOME/.config/yabai/create_spaces.sh
 
 SIP_STATUS="$(csrutil status | grep 'System Integrity Protection status: ')"
 if [[ "$SIP_STATUS" =~ "enabled" ]]; then
@@ -11,44 +10,49 @@ if [[ "$SIP_STATUS" =~ "enabled" ]]; then
 	# Run your shell commands here if SIP is enabled
 else
 	echo "SIP is disabled..."
-	yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 	sudo yabai --load-sa
+	yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 fi
 
-yabai -m signal --add event=display_added action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
-yabai -m signal --add event=display_removed action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
-yabai -m signal --add event=display_resized action="brew services restart sketchybar"
+yabai -m signal --add event=display_added action="echo \"display added\" && sleep 0.1 && $HOME/.config/yabai/create_spaces.sh"
+yabai -m signal --add event=display_removed action="echo \"display removed\" && sleep 0.1 && $HOME/.config/yabai/create_spaces.sh"
+# yabai -m signal --add event=display_resized action="brew services restart sketchybar"
 
 # Change how yabai looks
-yabai -m config window_border on \
-	mouse_follows_focus off \
-	focus_follows_mouse off \
+yabai -m config mouse_follows_focus on \
 	window_placement second_child \
-	window_topmost off \
 	window_shadow float \
 	window_opacity on \
-	window_opacity_duration 0.15 \
 	active_window_opacity 1.0 \
-	normal_window_opacity 0.95 \
-	window_border_width 2 \
-	window_border_radius 11 \
-	window_animation_duration 0.15 \
-	active_window_border_color 0xffe1e3e4 \
-	normal_window_border_color 0xff2a2f38 \
-	insert_feedback_color 0xff9dd274 \
+	normal_window_opacity 0.9 \
 	split_ratio 0.50 \
 	auto_balance off \
 	mouse_modifier ctrl \
-	mouse_action1 move \
-	mouse_action2 resize \
 	mouse_drop_action swap \
 	\
-	bottom_padding 10 \
-	left_padding 10 \
-	right_padding 10 \
-	window_gap 8 \
+	bottom_padding 20 \
+	left_padding 20 \
+	right_padding 20 \
+	window_gap 10 \
 	external_bar all:45:0
+
 # top_padding 20 \
+# mouse_follows_focus off \
+# focus_follows_mouse on \
+# mouse_action1 move \
+# mouse_action2 resize \
+#
+# active_window_border_color 0xffe1e3e4 \
+# normal_window_border_color 0xff2a2f38 \
+# insert_feedback_color 0xff9dd274 \
+# window_opacity_duration 0.25 \
+
+echo "before spaces"
+
+# Create spaces
+$HOME/.config/yabai/create_spaces.sh
+
+echo "spaces created"
 
 # My custom space names for my 3 monitor setup. These names are used in some of my scripts.
 yabai -m space 1 --label one
@@ -57,9 +61,11 @@ yabai -m space 3 --label three
 yabai -m space 4 --label four
 yabai -m space 5 --label five
 yabai -m space 6 --label six
-yabai -m space 7 --label six
-yabai -m space 8 --label six
-yabai -m space 9 --label nine
+# yabai -m space 7 --label six
+# yabai -m space 8 --label six
+# yabai -m space 9 --label nine
+
+echo "after spaces"
 
 # float system preferences. Most of these just diable Yabai form resizing them.
 yabai -m rule --add app="^System Preferences$" sticky=on sub-layer=above manage=off
