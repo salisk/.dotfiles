@@ -83,7 +83,7 @@ source ~/.config/zsh/.zsh_aliases
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-  export KUBECONFIG=$HOME/code/k8s-gitops/provision/kubeconfig
+  # export KUBECONFIG=$HOME/code/k8s-gitops/provision/kubeconfig
   export GOROOT="$(brew --prefix golang)/libexec"
 else 
   export TERMINAL=alacritty
