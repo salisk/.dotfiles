@@ -7,7 +7,7 @@ return {}
 --         settings = {
 --           gopls = {
 --             semanticTokens = true,
---             buildFlags = { "-tags=cluster,integration,operator" },
+--             -- buildFlags = { "-tags=cluster,integration,operator" },
 --             analyses = {
 --               unusedparams = true,
 --             },

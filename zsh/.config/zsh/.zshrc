@@ -81,10 +81,11 @@ source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/.zsh_aliases
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/go:$PATH"
+  export GOPROXY="https://us-central1-go.pkg.dev/cicd-master-oxk5/go-modules,https://proxy.golang.org,direct"
+  export GONOSUMDB="github.com/castai/*,gitlab.com/castai/*"
+  unset GOROOT
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-  # export KUBECONFIG=$HOME/code/k8s-gitops/provision/kubeconfig
-  export GOROOT="$(brew --prefix golang)/libexec"
 else 
   export TERMINAL=alacritty
   export GOROOT=/usr/local/go
@@ -106,19 +107,18 @@ fi
 
 #export PATH="/usr/local/opt/qt/bin:$PATH"
 #export PATH="/usr/local/opt/libiconv/bin:$PATH"
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:`go env GOPATH`/bin
 export PATH="/usr/local/sbin:$PATH"
 
-export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+# export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
 
 # bindkey "^[[A" history-substring-search-up
 # bindkey "^[OA" history-substring-search-up
 # bindkey "^[[B" history-substring-search-down
 # bindkey "^[OB" history-substring-search-down
 
-command -v rbenv &> /dev/null && eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 eval "$(atuin init zsh)"
 
