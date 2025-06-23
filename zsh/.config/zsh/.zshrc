@@ -84,7 +84,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/go:$PATH"
   export GOPROXY="https://us-central1-go.pkg.dev/cicd-master-oxk5/go-modules,https://proxy.golang.org,direct"
   export GONOSUMDB="github.com/castai/*,gitlab.com/castai/*"
-  unset GOROOT
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 else 
   export TERMINAL=alacritty
