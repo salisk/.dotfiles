@@ -66,9 +66,10 @@ source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # plugins=()
 # plugins+=(zsh-syntax-highlighting)
-# plugins+=(git-flow git-extras)                  # Git
+plugins+=(git-flow git-extras)                  # Git
+plugins+=(golang gnu-utils)
 # plugins+=(pip)                                  # Python stuff
-# plugins+=(docker docker-compose)                # Docker stuff
+plugins+=(docker docker-compose)                # Docker stuff
 # plugins+=(kubectl minikube)                     # Kubernetes stuff
 # [[ "$OSTYPE" == "darwin"* ]] && plugins+=(osx)  # Mac OS
 
