@@ -86,6 +86,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export GOPROXY="https://us-central1-go.pkg.dev/cicd-master-oxk5/go-modules,https://proxy.golang.org,direct"
   export GONOSUMDB="github.com/castai/*,gitlab.com/castai/*"
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+  command -v gcloud >/dev/null 2>&1 && export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH"
 else 
   export TERMINAL=alacritty
   export GOROOT=/usr/local/go
