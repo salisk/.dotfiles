@@ -4,3 +4,6 @@ keymap_mode = "vim-insert"
 
 [sync]
 records = true
+
+[dotfiles]
+enabled = true
