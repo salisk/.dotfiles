@@ -5,12 +5,12 @@
 plugins:
   toggle-helmrelease:
     shortCut: Shift-T
-    confirm: true
+    confirm: false
     scopes:
       - helmreleases
     description: Toggle to suspend or resume a HelmRelease
     command: bash
-    background: false
+    background: true
     args:
       - -c
       - >-
@@ -23,12 +23,12 @@ plugins:
         | less -K
   toggle-kustomization:
     shortCut: Shift-T
-    confirm: true
+    confirm: false
     scopes:
       - kustomizations
     description: Toggle to suspend or resume a Kustomization
     command: bash
-    background: false
+    background: true
     args:
       - -c
       - >-
