@@ -9,3 +9,18 @@ opt.iskeyword:append("-") -- consider string-string as whole word
 -- vim.g.lazyvim_ruby_lsp = "solargraph"
 -- vim.g.lazyvim_ruby_formatter = "rubocop"
 vim.g.lazyvim_picker = "snacks"
+
+-- dbs
+vim.g.dbs = {
+  {
+    name = "prod_master",
+    url = function()
+      local user = os.getenv("PROD_MASTER_PG_USER")
+      local token = vim.fn.system("gcloud sql generate-login-token"):gsub("%s+", "")
+      local host = os.getenv("PROD_MASTER_PG_HOST")
+      local dbname = os.getenv("PROD_MASTER_PG_DBNAME")
+
+      return string.format("postgresql://%s:%s@%s:5432/%s", user, token, host, dbname)
+    end,
+  },
+}
