@@ -42,6 +42,7 @@
         - { name: "Borders", path: "borders" }
         - { name: "Atuin", path: "atuin" }
         - { name: "SketchyVim", path: "svim" }
+        - { name: "k9s", path: "k9s" }
         # - { name: "Aerospace", path: "aerospace" }
     # - name: Start Yabai
     #   import_tasks: osx/yabai.yml
