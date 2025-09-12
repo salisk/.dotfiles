@@ -28,6 +28,14 @@ vim.keymap.set("n", "<leader>wq", ":close<CR>") -- close current split window
 -- restart lsp server
 vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
+-- code companion
+vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "<leader>ad", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])
+
 -- dadbod UI
 -- vim.keymap.set("n", "<leader>cq", ":DBUIToggle<CR>")
 
