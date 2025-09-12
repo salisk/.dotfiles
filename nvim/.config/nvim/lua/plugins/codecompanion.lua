@@ -9,20 +9,44 @@ return {
       strategies = {
         -- Change the default chat adapter and model
         chat = {
-          adapter = "copilot",
-          model = "gpt-5",
+          adapter = {
+            name = "copilot",
+            model = "gpt-5",
+          },
           keymaps = {
             send = {
-              modes = { n = "<CR>", i = "<C-g>" },
+              modes = { n = "<CR>", i = { "<C-g>", "<C-v>" } },
             },
           },
         },
         inline = {
-          adapter = "copilot",
-          model = "gpt-5",
+          adapter = {
+            name = "copilot",
+            model = "gpt-5",
+          },
         },
         cmd = {
-          adapter = "gemini-cli",
+          adapter = {
+            name = "gemini-cli",
+          },
+        },
+      },
+      adapters = {
+        gemini = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            env = {
+              api_key = "GEMINI_API_KEY",
+            },
+          })
+        end,
+        acp = {
+          gemini_cli = function()
+            return require("codecompanion.adapters").extend("gemini_cli", {
+              env = {
+                GEMINI_API_KEY = "GEMINI_API_KEY",
+              },
+            })
+          end,
         },
       },
       -- NOTE: The log_level is in `opts.opts`
