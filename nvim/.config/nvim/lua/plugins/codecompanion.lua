@@ -10,11 +10,16 @@ return {
         -- Change the default chat adapter and model
         chat = {
           adapter = "copilot",
-          model = "gpt5",
+          model = "gpt-5",
+          keymaps = {
+            send = {
+              modes = { n = "<CR>", i = "<C-g>" },
+            },
+          },
         },
         inline = {
           adapter = "copilot",
-          model = "gpt5",
+          model = "gpt-5",
         },
         cmd = {
           adapter = "gemini-cli",
