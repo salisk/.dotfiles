@@ -32,18 +32,11 @@ return {
         },
       },
       adapters = {
-        gemini = function()
-          return require("codecompanion.adapters").extend("gemini", {
-            env = {
-              api_key = "GEMINI_API_KEY",
-            },
-          })
-        end,
         acp = {
           gemini_cli = function()
             return require("codecompanion.adapters").extend("gemini_cli", {
-              env = {
-                GEMINI_API_KEY = "GEMINI_API_KEY",
+              defaults = {
+                auth_method = "gemini-api-key",
               },
             })
           end,
