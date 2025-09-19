@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+autoload -Uz compinit
+compinit
+
 # enable en_US locale w/ UTF-8 encodings if not already configured
 export LANG=en_US.UTF-8
 export LANGUAGE=en
@@ -27,13 +30,6 @@ setopt HIST_FIND_NO_DUPS
 # Enable vi mode
 bindkey -v
 
-# Force re-completion
-autoload -U compinit && compinit -d $ZSH_CACHE_DIR/zcompdump-$ZSH_VERSION
-zstyle ':completion:*' menu select
-# zstyle ':completion::complete:lsof:*' menu yes select
-zmodload zsh/complist
-# compinit
-_comp_options+=(globdots)
 
 # Colors
 autoload -Uz colors && colors
@@ -56,7 +52,7 @@ compdef __start_kubectl k
 
 [[ "$OSTYPE" == "darwin"* ]] && source $ZSH_PLUGINS/macos/macos.plugin.zsh
 source $ZSH_PLUGINS/docker/_docker
-source $ZSH_PLUGINS/iterm2/iterm2.plugin.zsh
+# source $ZSH_PLUGINS/iterm2/iterm2.plugin.zsh
 source $ZSH_PLUGINS/autojump/autojump.plugin.zsh
 source $ZSH_PLUGINS/git/git.plugin.zsh
 #source $ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh  # doesn't work with history substring search
@@ -85,7 +81,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/go:$PATH"
   export GOPROXY="https://us-central1-go.pkg.dev/cicd-master-oxk5/go-modules,https://proxy.golang.org,direct"
   export GONOSUMDB="github.com/castai/*,gitlab.com/castai/*"
-  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+  # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
   command -v gcloud >/dev/null 2>&1 && export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH"
 else 
   export TERMINAL=alacritty
@@ -96,6 +92,11 @@ fi
 
 # Force re-completion
 autoload -U compinit && compinit -d $ZSH_CACHE_DIR/zcompdump-$ZSH_VERSION
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
+zmodload zsh/complist
+# compinit
+_comp_options+=(globdots)
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -124,7 +125,7 @@ eval "$(direnv hook zsh)"
 eval "$(atuin init zsh)"
 
 # Vinted
-[ -f "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh" ] && source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh"
+# [ -f "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh" ] && source "${DEVTOOLS_PATH:-$HOME/vinted/dev-tools}/bin/shell_function.sh"
 
 # if [[ "$OSTYPE" != "darwin"* ]]; then
 #     source ~/.nix-profile/etc/profile.d/nix.sh
