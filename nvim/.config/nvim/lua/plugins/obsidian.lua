@@ -1,7 +1,7 @@
 local obsidian_relative_path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ObsidianNotes"
 
 return {
-  "epwalsh/obsidian.nvim",
+  "obsidian-nvim/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
   lazy = false,
   ft = "markdown",
@@ -19,21 +19,13 @@ return {
     -- see below for full list of optional dependencies 👇
   },
   keys = {
-    {
-      "<leader>on",
-      function()
-        vim.api.nvim_command("ObsidianNew")
-        vim.api.nvim_buf_set_lines(0, 0, -1, false, {}) -- Clear buffer
-        vim.api.nvim_command("ObsidianTemplate Core") -- Apply Core Template
-      end,
-      desc = "Create new note",
-    },
-    { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian notes" },
-    { "<leader>od", "<cmd>ObsidianToday<cr>", desc = "Open daily note" },
-    { "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick Switch" },
-    { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Show location list of backlinks" },
-    { "<leader>of", "<cmd>ObsidianFollowLink<cr>", desc = "Follow link under cursor" },
-    { "<leader>ot", "<cmd>ObsidianTemplate Core<cr>", desc = "Apply Core Template" },
+    { "<leader>on", "<cmd>Obsidian new", desc = "Create new note" },
+    { "<leader>os", "<cmd>Obsidian search<cr>", desc = "Search Obsidian notes" },
+    { "<leader>od", "<cmd>Obsidian today<cr>", desc = "Open daily note" },
+    { "<leader>oo", "<cmd>Obsidian quick_switch<cr>", desc = "Quick Switch" },
+    { "<leader>ob", "<cmd>Obsidian backlings<cr>", desc = "Show location list of backlinks" },
+    { "<leader>of", "<cmd>Obsidian follow_link<cr>", desc = "Follow link under cursor" },
+    { "<leader>ot", "<cmd>Obsidian template Core<cr>", desc = "Apply Core Template" },
     { "<leader>og", "<cmd>ObsidianGitSync<cr>", desc = "Sync changes to git" },
   },
   opts = {
