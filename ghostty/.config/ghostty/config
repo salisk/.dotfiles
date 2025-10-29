@@ -1,5 +1,5 @@
 # theme = gruvbox-material
-theme = "GruvboxDark"
+theme = "Gruvbox Dark"
 macos-option-as-alt = true
 font-feature = -calt
 confirm-close-surface = false
