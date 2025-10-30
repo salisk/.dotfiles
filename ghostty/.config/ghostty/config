@@ -16,3 +16,15 @@ keybind = ctrl+digit_7=text:\x1b[55;5u
 keybind = ctrl+digit_8=text:\x1b[56;5u
 keybind = ctrl+digit_9=text:\x1b[57;5u
 keybind = ctrl+digit_0=text:\x1b[48;5u
+
+# Shift+Ctrl for moving
+keybind = ctrl+shift+digit_1=text:\x1b[27;6;49~
+keybind = ctrl+shift+digit_2=text:\x1b[27;6;50~
+keybind = ctrl+shift+digit_3=text:\x1b[27;6;51~
+keybind = ctrl+shift+digit_4=text:\x1b[27;6;52~
+keybind = ctrl+shift+digit_5=text:\x1b[27;6;53~
+keybind = ctrl+shift+digit_6=text:\x1b[27;6;54~
+keybind = ctrl+shift+digit_7=text:\x1b[27;6;55~
+keybind = ctrl+shift+digit_8=text:\x1b[27;6;56~
+keybind = ctrl+shift+digit_9=text:\x1b[27;6;57~
+keybind = ctrl+shift+digit_0=text:\x1b[27;6;48~
