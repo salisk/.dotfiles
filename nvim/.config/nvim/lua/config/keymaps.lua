@@ -29,9 +29,14 @@ vim.keymap.set("n", "<leader>wq", ":close<CR>") -- close current split window
 vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
 -- code companion
-vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
-vim.keymap.set("v", "<leader>ad", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>za", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>zc", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "<leader>zd", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+-- k9s
+vim.keymap.set("n", "<leader>kk", function()
+  Snacks.terminal("k9s")
+end, { desc = "K9s" })
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])

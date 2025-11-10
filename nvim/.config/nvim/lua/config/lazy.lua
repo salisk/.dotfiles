@@ -19,7 +19,8 @@ require("lazy").setup({
     -- coding
     { import = "lazyvim.plugins.extras.coding.yanky" },
     { import = "lazyvim.plugins.extras.coding.blink" },
-    { import = "lazyvim.plugins.extras.ai.copilot" },
+    -- { import = "lazyvim.plugins.extras.ai.copilot" },
+    { import = "lazyvim.plugins.extras.ai.sidekick" },
     -- { import = "lazyvim.plugins.extras.ai.copilot-chat" },
 
     -- lang
