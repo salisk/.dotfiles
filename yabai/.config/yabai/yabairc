@@ -6,12 +6,12 @@
 
 SIP_STATUS="$(csrutil status | grep 'System Integrity Protection status: ')"
 if [[ "$SIP_STATUS" =~ "enabled" ]]; then
-	echo "SIP is enabled..."
-	# Run your shell commands here if SIP is enabled
+  echo "SIP is enabled..."
+  # Run your shell commands here if SIP is enabled
 else
-	echo "SIP is disabled..."
-	sudo yabai --load-sa
-	yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+  echo "SIP is disabled..."
+  sudo yabai --load-sa
+  yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 fi
 
 yabai -m signal --add event=display_added action="echo \"display added\" && sleep 0.1 && $HOME/.config/yabai/create_spaces.sh"
@@ -20,21 +20,21 @@ yabai -m signal --add event=display_removed action="echo \"display removed\" && 
 
 # Change how yabai looks
 yabai -m config mouse_follows_focus on \
-	window_placement second_child \
-	window_shadow float \
-	window_opacity on \
-	active_window_opacity 1.0 \
-	normal_window_opacity 0.9 \
-	split_ratio 0.50 \
-	auto_balance off \
-	mouse_modifier ctrl \
-	mouse_drop_action swap \
-	\
-	bottom_padding 20 \
-	left_padding 20 \
-	right_padding 20 \
-	window_gap 10 \
-	external_bar all:45:0
+  window_placement second_child \
+  window_shadow float \
+  window_opacity on \
+  active_window_opacity 0.95 \
+  normal_window_opacity 0.8 \
+  split_ratio 0.50 \
+  auto_balance off \
+  mouse_modifier ctrl \
+  mouse_drop_action swap \
+  \
+  bottom_padding 20 \
+  left_padding 20 \
+  right_padding 20 \
+  window_gap 10 \
+  external_bar all:45:0
 
 # top_padding 20 \
 # mouse_follows_focus off \
