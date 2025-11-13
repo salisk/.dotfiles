@@ -61,6 +61,7 @@ require("lazy").setup({
     -- { "tpope/vim-rails" },
     -- disable leap
     { "ggandor/flit.nvim", enabled = false },
+    { "trixnz/sops.nvim" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
