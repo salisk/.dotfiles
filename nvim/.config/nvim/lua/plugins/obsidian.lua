@@ -29,7 +29,7 @@ return {
     { "<leader>og", "<cmd>ObsidianGitSync<cr>", desc = "Sync changes to git" },
   },
   opts = {
-    attachments = { img_folder = obsidian_relative_path .. "/_resources" },
+    -- attachments = { img_folder = obsidian_relative_path .. "/_resources" },
     completion = { nvim_cmp = false },
     templates = { folder = obsidian_relative_path .. "/Templates", date_format = "%y%m%d", time_format = "%H%M" },
     workspaces = {
@@ -47,139 +47,141 @@ return {
       --   path = "~/vaults/work",
       -- },
     },
-    note_id_func = function(title)
-      if title ~= nil then
-        return title
-      else
-        return os.date("%Y%m%d%H%M%S")
-      end
-    end,
-
-    -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
-    -- URL it will be ignored but you can customize this behavior here.
-    ---@param url string
-    follow_url_func = function(url)
-      -- Open the URL in the default web browser.
-      vim.fn.jobstart({ "open", url }) -- Mac OS
-      -- vim.fn.jobstart({"xdg-open", url})  -- linux
-      -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
-      -- vim.ui.open(url) -- need Neovim 0.10.0+
-    end,
-
-    -- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
-    -- file it will be ignored but you can customize this behavior here.
-    ---@param img string
-    follow_img_func = function(img)
-      vim.fn.jobstart({ "qlmanage", "-p", img }) -- Mac OS quick look preview
-      -- vim.fn.jobstart({"xdg-open", url})  -- linux
-      -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
-    end,
   },
-  -- sync changes to git
-  config = function(_, opts)
-    require("obsidian").setup(opts)
-    local job = require("plenary.job")
-    local update_interval_mins = 5
-
-    -- Function to expand the tilde (~) to the full path
-    local function expand_home(path_str)
-      if path_str:sub(1, 1) == "~" then
-        local home = os.getenv("HOME")
-        if home then
-          return path_str:gsub("^~", home)
-        else
-          -- Handle the case where HOME is not set (should be rare)
-          error("HOME environment variable is not set")
-        end
-      end
-      return path_str
-    end
-
-    local obsidian_path = expand_home(obsidian_relative_path)
-
-    -- check for any changes in the vault & pull them in
-    local function pull_changes()
-      job
-        :new({
-          command = "git",
-          args = { "pull" },
-          cwd = obsidian_path,
-        })
-        :start()
-    end
-
-    local function remove_lock()
-      job
-        :new({
-          command = "rm",
-          args = { ".git/index.lock" },
-          cwd = obsidian_path,
-        })
-        :start()
-    end
-
-    local function push_changes()
-      vim.notify("Pushing updates...", 2, { title = "Obsidian.nvim" })
-      job
-        :new({
-          command = "git",
-          args = { "push" },
-          cwd = obsidian_path,
-        })
-        :start()
-    end
-
-    local function commit_changes()
-      local timestamp = os.date("%Y-%m-%d %H:%M:%S")
-      job
-        :new({
-          command = "git",
-          args = { "commit", "-m", "vault backup: " .. timestamp },
-          cwd = obsidian_path,
-          on_exit = function()
-            push_changes()
-          end,
-          on_stderr = function(_, data)
-            -- vim.notify("Error committing changes: " .. data, 2, { title = "Obsidian.nvim" })
-          end,
-        })
-        :start()
-    end
-
-    local function stage_changes()
-      vim.notify("Performing git sync...", 2, { title = "Obsidian.nvim" })
-      job
-        :new({
-          command = "git",
-          args = { "add", "." },
-          cwd = obsidian_path,
-          on_exit = function()
-            commit_changes()
-          end,
-          on_stderr = function(_, data)
-            -- vim.notify("Error staging changes: " .. data, 2, { title = "Obsidian.nvim" })
-          end,
-        })
-        :start()
-    end
-
-    local function sync_changes()
-      remove_lock()
-      stage_changes()
-      pull_changes()
-    end
-
-    local function schedule_update()
-      vim.defer_fn(function()
-        sync_changes()
-        schedule_update()
-      end, update_interval_mins * 60 * 1000)
-    end
-
-    -- schedule_update()
-
-    vim.api.nvim_create_user_command("ObsidianGitSync", function()
-      sync_changes()
-    end, {})
-  end,
 }
+-- note_id_func = function(title)
+--   if title ~= nil then
+--     return title
+--   else
+--     return os.date("%Y%m%d%H%M%S")
+--   end
+-- end,
+
+-- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
+-- URL it will be ignored but you can customize this behavior here.
+------@param url string
+---follow_url_func = function(url)
+---  -- Open the URL in the default web browser.
+---  vim.fn.jobstart({ "open", url }) -- Mac OS
+---  -- vim.fn.jobstart({"xdg-open", url})  -- linux
+---  -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
+---  -- vim.ui.open(url) -- need Neovim 0.10.0+
+---end,
+
+-- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
+-- file it will be ignored but you can customize this behavior here.
+---  ---@param img string
+---  follow_img_func = function(img)
+---    vim.fn.jobstart({ "qlmanage", "-p", img }) -- Mac OS quick look preview
+---    -- vim.fn.jobstart({"xdg-open", url})  -- linux
+---    -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
+---  end,
+---},
+-- sync changes to git
+-- config = function(_, opts)
+--   require("obsidian").setup(opts)
+--   local job = require("plenary.job")
+--   local update_interval_mins = 5
+--
+--   -- Function to expand the tilde (~) to the full path
+--   local function expand_home(path_str)
+--     if path_str:sub(1, 1) == "~" then
+--       local home = os.getenv("HOME")
+--       if home then
+--         return path_str:gsub("^~", home)
+--       else
+--         -- Handle the case where HOME is not set (should be rare)
+--         error("HOME environment variable is not set")
+--       end
+--     end
+--     return path_str
+--   end
+--
+--   local obsidian_path = expand_home(obsidian_relative_path)
+--
+--   -- check for any changes in the vault & pull them in
+--   local function pull_changes()
+--     job
+--       :new({
+--         command = "git",
+--         args = { "pull" },
+--         cwd = obsidian_path,
+--       })
+--       :start()
+--   end
+--
+--   local function remove_lock()
+--     job
+--       :new({
+--         command = "rm",
+--         args = { ".git/index.lock" },
+--         cwd = obsidian_path,
+--       })
+--       :start()
+--   end
+--
+--   local function push_changes()
+--     vim.notify("Pushing updates...", 2, { title = "Obsidian.nvim" })
+--     job
+--       :new({
+--         command = "git",
+--         args = { "push" },
+--         cwd = obsidian_path,
+--       })
+--       :start()
+--   end
+--
+--   local function commit_changes()
+--     local timestamp = os.date("%Y-%m-%d %H:%M:%S")
+--     job
+--       :new({
+--         command = "git",
+--         args = { "commit", "-m", "vault backup: " .. timestamp },
+--         cwd = obsidian_path,
+--         on_exit = function()
+--           push_changes()
+--         end,
+--         on_stderr = function(_, data)
+--           -- vim.notify("Error committing changes: " .. data, 2, { title = "Obsidian.nvim" })
+--         end,
+--       })
+--       :start()
+--   end
+--
+--   local function stage_changes()
+--     vim.notify("Performing git sync...", 2, { title = "Obsidian.nvim" })
+--     job
+--       :new({
+--         command = "git",
+--         args = { "add", "." },
+--         cwd = obsidian_path,
+--         on_exit = function()
+--           commit_changes()
+--         end,
+--         on_stderr = function(_, data)
+--           -- vim.notify("Error staging changes: " .. data, 2, { title = "Obsidian.nvim" })
+--         end,
+--       })
+--       :start()
+--   end
+--
+--   local function sync_changes()
+--     remove_lock()
+--     stage_changes()
+--     pull_changes()
+--   end
+--
+--   local function schedule_update()
+--     vim.defer_fn(function()
+--       sync_changes()
+--       schedule_update()
+--     end, update_interval_mins * 60 * 1000)
+--   end
+
+-- schedule_update()
+
+--   vim.api.nvim_create_user_command("ObsidianGitSync", function()
+--     sync_changes()
+--   end, {})
+--   end,
+-- }
