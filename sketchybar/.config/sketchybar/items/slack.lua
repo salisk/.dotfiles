@@ -62,7 +62,7 @@ end)
 
 sbar.add("bracket", "widgets.slack.bracket", { slack.name }, {
 	background = {
-		color = colors.bg3,
+		color = colors.bg1,
 	},
 })
 
