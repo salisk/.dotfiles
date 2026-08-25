@@ -69,20 +69,38 @@ for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
   yabai -m space --destroy 7
 done
 
-# Define rules for application space assignment
-yabai -m rule --add app="^Ghostty$" space=4
-yabai -m rule --add app="^Safari$" space=^6
-yabai -m rule --add app="^Arc$" space=^6
-yabai -m rule --add app="^Zen$" space=^6
-yabai -m rule --add app="^Slack$" space=1
-yabai -m rule --add app="^Messenger$" space=2
-yabai -m rule --add app="^Obsidian$" space=2
-yabai -m rule --add app="^Spark Desktop$" space=5
-yabai -m rule --add app="^Music$" space=3
-yabai -m rule --add app="^Spotify$" space=3
-yabai -m rule --add app="^Discord$" space=3
+# Remove existing app rules to avoid duplicates on re-runs
+yabai -m rule --remove ghostty 2>/dev/null || true
+yabai -m rule --remove arc 2>/dev/null || true
+yabai -m rule --remove safari 2>/dev/null || true
+yabai -m rule --remove zen 2>/dev/null || true
+yabai -m rule --remove slack 2>/dev/null || true
+yabai -m rule --remove messenger 2>/dev/null || true
+yabai -m rule --remove obsidian 2>/dev/null || true
+yabai -m rule --remove spark 2>/dev/null || true
+yabai -m rule --remove music 2>/dev/null || true
+yabai -m rule --remove spotify 2>/dev/null || true
+yabai -m rule --remove discord 2>/dev/null || true
 
-yabai -m rule --apply
+# Define rules for application space assignment
+# yabai -m rule --add label=ghostty app="^Ghostty$" space=4
+
+# if [ "$NUMBER_OF_DISPLAYS" -eq 2 ]; then
+#     yabai -m rule --add label=arc app="^Arc$" space=4
+# else
+#     yabai -m rule --add label=arc app="^Arc$" space=^6
+# fi
+
+# yabai -m rule --add label=safari app="^Safari$" space=^6
+# yabai -m rule --add label=zen app="^Zen$" space=^6
+# yabai -m rule --add label=slack app="^Slack$" space=1
+# yabai -m rule --add label=messenger app="^Messenger$" space=2
+# yabai -m rule --add label=obsidian app="^Obsidian$" space=2
+# yabai -m rule --add label=spark app="^Spark Desktop$" space=5
+# yabai -m rule --add label=music app="^Music$" space=3
+# yabai -m rule --add label=spotify app="^Spotify$" space=3
+# yabai -m rule --add label=discord app="^Discord$" space=3
+# yabai -m rule --apply
 
 # Destroy extra spaces
 # DELTA=0
