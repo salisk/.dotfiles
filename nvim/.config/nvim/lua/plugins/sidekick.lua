@@ -3,6 +3,20 @@ return {
     "folke/sidekick.nvim",
     opts = {
       cli = {
+        -- Disable sidekick's built-in terminal-mode window navigation
+        -- (nav_left/down/up/right): at a window edge its action passes <c-hjkl>
+        -- straight through to the CLI (kimchi binds them — e.g. C-l opens the
+        -- model picker). The global terminal-mode maps in config/keymaps.lua
+        -- (TmuxYabaiOrSplitSwitch) handle navigation instead: nvim splits ->
+        -- tmux panes -> yabai windows.
+        win = {
+          keys = {
+            nav_left = false,
+            nav_down = false,
+            nav_up = false,
+            nav_right = false,
+          },
+        },
         tools = {
           kimchi = {
             cmd = { "kimchi" },

@@ -56,7 +56,6 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
     { import = "plugins" },
-    { "christoomey/vim-tmux-navigator" },
     -- { "nvim-treesitter/nvim-treesitter-context" },
     { "NvChad/nvim-colorizer.lua" },
     -- { "tpope/vim-rails" },
