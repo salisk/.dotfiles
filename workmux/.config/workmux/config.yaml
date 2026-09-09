@@ -1,0 +1,17 @@
+# Global workmux configuration — neovim-centric workflow.
+#
+# Agents run inside neovim (via sidekick.nvim + kimchi), so each worktree gets
+# a single neovim pane and prompts are written to .workmux/PROMPT-<branch>.md
+# instead of being injected into a separate agent pane. Neovim picks the prompt
+# file up on startup (see the autocmd in the nvim dotfiles).
+
+# Write prompts to .workmux/PROMPT-<branch>.md without requiring an agent pane.
+# Equivalent to passing --prompt-file-only on every `workmux add`.
+prompt_file_only: true
+
+# Single pane: just neovim (shell is toggled inside neovim).
+panes:
+  - command: nvim .
+    name: editor
+    focus: true
+nerdfont: true
