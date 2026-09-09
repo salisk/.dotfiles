@@ -41,6 +41,14 @@ return {
     --   - without a prompt file: still open the sidekick window with a kimchi
     --     session, ready for input.
     --
+    -- NOTE: we deliberately do NOT use `sidekick.cli.send`/`show` here. Both go
+    -- through `State.with(attach=true)`, which routes through a session picker
+    -- (`vim.ui.select`) whenever more than one kimchi state is discovered —
+    -- including kimchi processes running in OTHER tmux windows. Picking one of
+    -- those would hijack that session into this worktree. Instead we take the
+    -- bare kimchi tool state and attach to it directly, which always creates
+    -- a brand-new embedded session.
+    --
     -- The prompt is passed as `text` (not `msg`) to bypass sidekick's context
     -- variable expansion: a literal `{foo}` in the prompt would otherwise fail
     -- rendering and be discarded.
@@ -62,22 +70,28 @@ return {
             prompt = vim.fn.readfile(files[1])
             vim.fn.delete(files[1]) -- consume, so it only fires once
           end
-          if prompt and #prompt > 0 then
-            -- sidekick.Text[]: list of lines, each line a list of { [1] = text } chunks
-            local text = vim.tbl_map(function(line)
-              return { { line } }
-            end, prompt)
-            require("sidekick.cli").send({
-              name = "kimchi",
-              text = text,
-              submit = true,
-            })
-            return
-          end
-          -- No prompt to deliver: still open the sidekick window with a kimchi
-          -- session, but only inside a workmux worktree.
-          if vim.fn.getcwd():find("__worktrees", 1, true) then
-            require("sidekick.cli").show({ name = "kimchi" })
+
+          if (prompt and #prompt > 0) or vim.fn.getcwd():find("__worktrees", 1, true) then
+            vim.schedule(function()
+              local State = require("sidekick.cli.state")
+              for _, s in ipairs(State.get({ name = "kimchi" })) do
+                if not s.session and s.installed then
+                  local state = State.attach(s, { show = true })
+                  if state and prompt and #prompt > 0 then
+                    -- sidekick.Text[]: lines of { [1] = text } chunks
+                    local text = vim.tbl_map(function(line)
+                      return { { line } }
+                    end, prompt)
+                    vim.schedule(function()
+                      local msg = state.tool:format(text)
+                      state.session:send(msg .. "\n")
+                      state.session:submit()
+                    end)
+                  end
+                  break
+                end
+              end
+            end)
           end
         end,
       })
