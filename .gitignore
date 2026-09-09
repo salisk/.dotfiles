@@ -9,6 +9,7 @@ brew_formulae
 zsh/.config/zsh/.zsh_history
 zsh/.config/zsh/.zsh_sessions/
 zsh/.config/zsh/.zcompdump*
+zsh/.config/zsh/.zshrc.local
 
 # Agent session artifacts
 .kimchi/
