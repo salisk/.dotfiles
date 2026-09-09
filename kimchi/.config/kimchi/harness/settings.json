@@ -1,0 +1,35 @@
+{
+  "quietStartup": true,
+  "theme": "kimchi-minimal",
+  "lastChangelogVersion": "0.0.42",
+  "lastTerminalWarnings": {
+    "tmux": "2026-09-09",
+    "no_keyboard_protocol": "2026-09-09"
+  },
+  "rtkAutoInstallCheckedAt": 1788868141085,
+  "newlineHintDismissed": true,
+  "retry": {
+    "enabled": true,
+    "maxRetries": 3,
+    "baseDelayMs": 2000,
+    "provider": {
+      "timeoutMs": 600000,
+      "maxRetries": 0,
+      "maxRetryDelayMs": 60000
+    }
+  },
+  "defaultProvider": "kimchi-dev",
+  "defaultModel": "glm-5.3",
+  "multiModel": false,
+  "modelMetadata": {
+    "kimchi-dev/minimax-m3": {
+      "tier": "heavy",
+      "vision": true
+    }
+  },
+  "hideThinkingBlock": true,
+  "defaultThinkingLevel": "max",
+  "resources": {
+    "extensions.claude-code-hook-adapter": true
+  }
+}

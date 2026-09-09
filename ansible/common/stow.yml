@@ -12,3 +12,9 @@
 
 - name: Stow Ghostty
   command: stow -vv -t ~ -d {{playbook_dir}}/.. ghostty
+
+- name: Stow Workmux
+  command: stow -vv -t ~ -d {{playbook_dir}}/.. workmux
+
+- name: Stow Kimchi
+  command: stow -vv -t ~ -d {{playbook_dir}}/.. kimchi
