@@ -29,6 +29,13 @@ return {
       },
     },
 
+    -- Machine-local agent choice for the worktree sidekick session.
+    -- A per-machine override lives in ~/.config/nvim-local.lua (outside this
+    -- repo) returning a table, e.g.: return { sidekick_tool = "codex" }
+    -- Without it, the first installed tool from the preference list wins
+    -- (kimchi -> codex), so machines with disjoint installs need no file at
+    -- all.
+    --
     -- workmux integration:
     --
     -- workmux is configured with `prompt_file_only: true`, so `workmux add` writes
@@ -55,8 +62,30 @@ return {
     --
     -- Workmux worktrees are detected via the default `__worktrees` directory
     -- naming; if `worktree_dir` is ever changed in the workmux config, update
-    -- the detection below to match.
+    -- the detection below to match. Paseo worktrees (~/.paseo/worktrees/)
+    -- are deliberately NOT detected: Paseo already runs its own agent per
+    -- workspace, so an auto-started sidekick session there would be a second
+    -- agent in the same worktree.
     init = function()
+      local function worktree_agent_tool()
+        local ok, local_cfg = pcall(dofile, vim.fn.expand("~/.config/nvim-local.lua"))
+        if
+          ok
+          and type(local_cfg) == "table"
+          and type(local_cfg.sidekick_tool) == "string"
+          and local_cfg.sidekick_tool ~= ""
+        then
+          return local_cfg.sidekick_tool
+        end
+        if vim.fn.executable("kimchi") == 1 then
+          return "kimchi"
+        end
+        if vim.fn.executable("codex") == 1 then
+          return "codex"
+        end
+        return "kimchi"
+      end
+
       vim.api.nvim_create_autocmd("VimEnter", {
         group = vim.api.nvim_create_augroup("workmux-prompt", { clear = true }),
         callback = function()
@@ -74,7 +103,7 @@ return {
           if (prompt and #prompt > 0) or vim.fn.getcwd():find("__worktrees", 1, true) then
             vim.schedule(function()
               local State = require("sidekick.cli.state")
-              for _, s in ipairs(State.get({ name = "kimchi" })) do
+              for _, s in ipairs(State.get({ name = worktree_agent_tool() })) do
                 if not s.session and s.installed then
                   local state = State.attach(s, { show = true })
                   if state and prompt and #prompt > 0 then

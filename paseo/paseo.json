@@ -1,0 +1,10 @@
+{
+  "worktree": {
+    "terminals": [
+      {
+        "name": "neovim",
+        "command": "nvim ."
+      }
+    ]
+  }
+}
