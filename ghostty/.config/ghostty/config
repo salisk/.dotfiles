@@ -1,6 +1,11 @@
 # theme = gruvbox-material
 theme = "Gruvbox Dark"
 macos-option-as-alt = true
+# Ghostty's password-prompt heuristic arms Secure Input system-wide (sudo, ssh,
+# even vim's : command line), and it never auto-clears — it starves skhd's event
+# tap while Ghostty runs in the background. Keep it off; use the menu item
+# (Ghostty > Secure Keyboard Entry) manually in the rare case you want it.
+macos-auto-secure-input = false
 font-feature = -calt
 confirm-close-surface = false
 font-family = "JetBrainsMono Nerd Font Mono"

@@ -13,6 +13,9 @@
 - name: Stow Ghostty
   command: stow -vv -t ~ -d {{playbook_dir}}/.. ghostty
 
+- name: Stow Rex
+  command: stow -vv -t ~ -d {{playbook_dir}}/.. rex
+
 - name: Stow Workmux
   command: stow -vv -t ~ -d {{playbook_dir}}/.. workmux
 
