@@ -11,11 +11,11 @@ rex.bind("repeat/escape", "client.mode.exit")
 -- Prefix pass-through: ctrl+a ctrl+a sends ctrl+a to the program in the pane.
 rex.bind("ctrl+a>ctrl+a", "pane.send_key", { key = "ctrl+a" })
 
--- Pass-through for ctrl+c/d. `pane.send_key` is the documented Rex client action
--- that sends a key to the focused terminal "as if it had been pressed there":
--- ctrl+c becomes SIGINT and ctrl+d EOF in the pty.
-rex.bind("ctrl+c", "pane.send_key", { key = "ctrl+c" })
-rex.bind("ctrl+d", "pane.send_key", { key = "ctrl+d" })
+-- ctrl+c and ctrl+d are intentionally UNBOUND: Rex sends unbound keys to the
+-- focused terminal directly (SIGINT / EOF). Binding them to pane.send_key made
+-- Rex 0.1.0 (1853) silently drop the key instead: the binding fires, the action
+-- re-enters the key dispatcher with a bound key, and nothing reaches the pane.
+-- Removing the bindings restores the native pass-through path.
 
 -- Directional navigation, ported from vim-tmux-navigator + ~/.config/yabai/tmux-yabai.sh:
 -- vim running in the pane gets the key; otherwise focus the Rex pane in that
